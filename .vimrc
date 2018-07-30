@@ -1,50 +1,3 @@
-" 通用设置{
-	set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
-	set encoding=utf8
-	set number
-	set cursorline
-	set cursorcolumn
-	set tabstop=4
-    set expandtab
-    set colorcolumn=80
-
-	" 搜索时除非输入大写字母,否则不区分大小写
-	set ignorecase
-	set smartcase
-
-	" 设置窗口分割方向
-	set splitbelow
-	set splitright
-	set nowrap
-
-	" 切换窗口快捷键
-	nnoremap <C-j> <C-w><C-j>
-	nnoremap <C-k> <C-w><C-k>
-	nnoremap <C-h> <C-w><C-h>
-	nnoremap <C-l> <C-w><C-l>
-
-	"按S将一行拆分为两行
-	nnoremap S i<enter><esc>
-	map <C-s> :w<enter>
-
-	" 命令提示菜单
-	set wildmenu
-
-	" 设置永远显示状态栏
-	set laststatus=2
-	set noshowmode
-	" GUI设定
-	if has("gui_running") 
-		"au GUIEnter * simalt ~x            " 窗口启动时自动最大化
-		set guioptions-=m                   " 隐藏菜单栏
-		set guioptions-=T                   " 隐藏工具栏
-		set guifont=Monospace\ Regular\ 15  " 字体
-	endif 
-
-	" 切换目录到当前编辑的文件
-	nnoremap <silent> <leader>. :cd %:p:h<CR>
-" }
-
 " 语言相关功能{
 	map <f6> :call F6()<CR>
     command CancelDebug :call CancelDebug()
@@ -99,6 +52,7 @@
 			exec '!time ./%<'
 		elseif &filetype == 'python'
             call VimuxRunCommand("ipython3")
+            call VimuxRunCommand("%run ".bufname("%"))
 		elseif &filetype == 'sh'
 			:!time bash %
 		endif                                                                              
@@ -135,25 +89,16 @@
 	" 让vundle管理插件版本,必须
 	Plugin 'VundleVim/Vundle.vim'
 
-	" 以下范例用来支持不同格式的插件安装.
-	" 请将安装插件的命令放在vundle#begin和vundle#end之间.
-	" Github上的插件
-	" 格式为 Plugin '用户名/插件仓库名'
-	" Plugin 'tpope/vim-fugitive'
-	" 来自 http://vim-scripts.org/vim/scripts.html 的插件
-	" Plugin '插件名称' 实际上是 Plugin 'vim-scripts/插件仓库名' 只是此处的用户名可以省略
-	" Plugin 'L9'
-	" 由Git支持但不再github上的插件仓库 Plugin 'git clone 后面的地址'
-	" Plugin 'git://git.wincent.com/command-t.git'
-	" 本地的Git仓库(例如自己的插件) Plugin 'file:///+本地插件仓库绝对路径'
-	" Plugin 'file:///home/gmarik/path/to/plugin'
-	" 插件在仓库的子目录中.
-	" 正确指定路径用以设置runtimepath. 以下范例插件在sparkup/vim目录下
-	" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-	" 安装L9，如果已经安装过这个插件，可利用以下格式避免命名冲突
-	" Plugin 'ascenator/L9', {'name': 'newL9'}
+    " 不一定有用
+    Plugin 'tpope/vim-repeat'
+    Plugin 'mbbill/undotree'
+	Plugin 'kien/ctrlp.vim'
+	Plugin 'mileszs/ack.vim'
+    Plugin 'luochen1990/rainbow'
+    " 绝对有用
     Plugin 'julienr/vim-cellmode'
     Plugin 'christoomey/vim-tmux-navigator'
+    Plugin 'majutsushi/tagbar'
     Plugin 'benmills/vimux'
     Plugin 'Yggdroot/indentLine'
 	Plugin 'godlygeek/tabular'
@@ -161,8 +106,6 @@
 	Plugin 'w0rp/ale'
 	Plugin 'davidhalter/jedi-vim'
 	Plugin 'https://github.com/yonchu/accelerated-smooth-scroll.git'
-	Plugin 'kien/ctrlp.vim'
-	Plugin 'mileszs/ack.vim'
 	Plugin 'scrooloose/nerdcommenter'
 	Plugin 'iamcco/markdown-preview.vim'
 	Plugin 'scrooloose/nerdtree'
@@ -190,14 +133,12 @@
 	" 查阅 :h vundle 获取更多细节和wiki以及FAQ
 	" 将你自己对非插件片段放在这行之后" 
 " }
-
-" 折叠设置{
-	set foldmethod=indent
-	set foldlevel=99
-	nnoremap <space> za
-" }
-
-" jedi-vim配置{
+"" 折叠设置{
+"    set foldmethod=indent
+"    set foldlevel=99
+"    nnoremap <space> za
+"" }
+" jedi-vim{
 	let g:jedi#completions_enabled = 0
 	let g:jedi#goto_command = "<leader>d"
 	let g:jedi#goto_assignments_command = "<leader>a"
@@ -207,79 +148,56 @@
 	let g:jedi#completions_command = "<C-J>"
 	let g:jedi#rename_command = "<leader>r"
 " }
-
-" 有道翻译{
-	vnoremap <silent> <C-T> :<C-u>Ydv<CR>
-	nnoremap <silent> <C-T> :<C-u>Ydc<CR>
-	cmap yd <C-u>Yde<CR>
-	cmap youdao <C-u>Yde<CR>
-	noremap <leader>yd :<C-u>Yde<CR>
-" }
-
 " NERDTree{
 	map <C-f> :NERDTreeToggle<CR>
 " }
-
 " Supertab{
 	let g:SuperTabDefaultCompletionType="<c-n>"
 " }
-
 " IndentGuides{
 	let g:indent_guides_enable_on_vim_startup = 1 "添加行，vim启动时启用
 	let g:indent_guides_start_level = 1           "添加行，开始显示对齐线的缩进级别
 	let g:indent_guides_guide_size = 1            "添加行，对齐线的宽度，（1字符）
 	let g:indent_guides_tab_guides = 0            "添加行，对tab对齐的禁用
 " }
-
 " YouCompleteMe{
 	let g:ycm_key_invoke_completion = '<C-/>'
 " }
-
 " Tabular{
 	nmap <leader><Tab> :Tabularize /#/l2r1<enter>
 	vmap <leader><Tab> :Tabularize /#/l2r1<enter>
 " }
-
 " ale{
 	let g:ale_change_sign_column_color=1
     let g:ale_python_flake8_options = '--ignore=E501'
     let g:ale_python_autopep8_options = '--ignore E501'
 " }
-
 " SimpylFold{
 	let g:SimpylFold_docstring_preview=1
 " }
-
 " 配色方案{
 	colorscheme zenburn
 	hi Normal  ctermfg=252 ctermbg=none
 " }
-
 " ack.vim{
 	let g:ackprg = 'ag --nogroup --nocolor --column'
 " }
-
 " ctrlp{
 	let g:ctrlp_map = '<c-p>'
 " }
-
 " markdown-preview{
 	let g:mkdp_auto_start = 1
 	let g:mkdp_auto_open = 1
 	let g:mkdp_auto_close = 0
 " }
-
 " vmux{
     map <Leader>vp :VimuxPromptCommand<CR>
-    map <Leader>vm :VimuxPromptCommand("make ")<CR>
 " }
-
 " Autopep8{
     let g:autopep8_disable_show_diff=1
-    let g:autopep8_ignore="E501"
+    let g:autopep8_ignore="E501,E722"
     let g:autopep8_max_line_length=1079
 "}
-
 " F8功能键{
 	map <F8> :call F8()<CR>
 
@@ -293,9 +211,70 @@
 		endif
 	endfunc
 " }
-
 " cellmode{
     let g:cellmode_tmux_sessionname=''
     let g:cellmode_tmux_windowname='ipython3'
     let g:cellmode_tmux_panenumber='1'
+" }
+" tagbar{
+    nnoremap <leader>t :TagbarOpen fj<CR>
+" }
+" undotree{
+    nnoremap <leader>u :UndotreeToggle<cr>
+" }
+" indentLine{
+    let g:indentLine_color_term = 202
+    let g:indentLine_char = '|'
+    "let g:indentLine_bgcolor_term = 202
+" }
+" 通用设置{
+	set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+	set encoding=utf8
+	set number
+	set cursorline
+	set cursorcolumn
+	set tabstop=4
+    set expandtab
+    set colorcolumn=80
+    highlight cursorcolumn cterm=NONE ctermbg='black'
+    highlight cursorline cterm=NONE ctermbg='brown'
+    highlight colorcolumn cterm=NONE ctermbg='red'
+
+	" 搜索时除非输入大写字母,否则不区分大小写
+	set ignorecase
+	set smartcase
+
+	" 设置窗口分割方向
+	set splitbelow
+	set splitright
+	set nowrap
+
+	" 切换窗口快捷键
+	nnoremap <C-j> <C-w><C-j>
+	nnoremap <C-k> <C-w><C-k>
+	nnoremap <C-h> <C-w><C-h>
+	nnoremap <C-l> <C-w><C-l>
+
+    nnoremap <leader>rc :tabe ~/.vimrc<CR>
+
+	"按S将一行拆分为两行
+	nnoremap S i<enter><esc>
+	map <C-s> :w<enter>
+
+	" 命令提示菜单
+	set wildmenu
+
+	" 设置永远显示状态栏
+	set laststatus=2
+	set noshowmode
+	" GUI设定
+	if has("gui_running") 
+		"au GUIEnter * simalt ~x            " 窗口启动时自动最大化
+		set guioptions-=m                   " 隐藏菜单栏
+		set guioptions-=T                   " 隐藏工具栏
+		set guifont=Monospace\ Regular\ 15  " 字体
+	endif 
+
+	" 切换目录到当前编辑的文件
+	nnoremap <silent> <leader>. :cd %:p:h<CR>
 " }

@@ -603,3 +603,4 @@ c = get_config()
 
 c.InteractiveShell.editor = 'vi'
 c.TerminalInteractiveShell.editing_mode = 'vi'
+c.InteractiveShell.colors = 'linux'
