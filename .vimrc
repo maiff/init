@@ -7,11 +7,11 @@
 		" python文件设置断点
 		if &filetype == 'python'
             let s:first_line = getline(1)
-            if s:first_line != 'import pdb'
-                call append(0, 'import pdb')
+            if s:first_line != 'import ipdb'
+                call append(0, 'import ipdb')
             endif
 			let s:n_indent = indent('.')
-			let append_content = 'pdb.set_trace()'
+			let append_content = 'ipdb.set_trace()'
 			let append_content = repeat(' ', s:n_indent).append_content
 			call append(line('.') - 1, append_content)
 			exec 'write'
@@ -25,6 +25,7 @@
 	func! CancelDebug()
 		" python文件取消调试
 		if &filetype == 'python'
+			exec 'g/\v(^[ \t#]*ipdb\.|^import ipdb$)/d'
 			exec 'g/\v(^[ \t#]*pdb\.|^import pdb$)/d'
 			exec 'write'
         endif
@@ -105,7 +106,7 @@
 	Plugin 'tmhedberg/SimpylFold'
 	Plugin 'w0rp/ale'
 	Plugin 'davidhalter/jedi-vim'
-	Plugin 'https://github.com/yonchu/accelerated-smooth-scroll.git'
+	"Plugin 'https://github.com/yonchu/accelerated-smooth-scroll.git'
 	Plugin 'scrooloose/nerdcommenter'
 	Plugin 'iamcco/markdown-preview.vim'
 	Plugin 'scrooloose/nerdtree'
@@ -171,6 +172,8 @@
 	let g:ale_change_sign_column_color=1
     let g:ale_python_flake8_options = '--ignore=E501'
     let g:ale_python_autopep8_options = '--ignore E501'
+  nmap <leader>ap <Plug>(ale_previous_wrap)
+  nmap <leader>an <Plug>(ale_next_wrap)
 " }
 " SimpylFold{
 	let g:SimpylFold_docstring_preview=1
@@ -236,6 +239,7 @@
 	set tabstop=4
     set expandtab
     set colorcolumn=80
+    set foldlevelstart=99
     highlight cursorcolumn cterm=NONE ctermbg='black'
     highlight cursorline cterm=NONE ctermbg='brown'
     highlight colorcolumn cterm=NONE ctermbg='red'
@@ -259,7 +263,7 @@
 
 	"按S将一行拆分为两行
 	nnoremap S i<enter><esc>
-	map <C-s> :w<enter>
+	map <enter> :w<enter>
 
 	" 命令提示菜单
 	set wildmenu

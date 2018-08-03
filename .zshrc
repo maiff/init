@@ -107,6 +107,7 @@ bindkey '^N' history-search-forward
 #alias vim="stty stop '' -ixoff ; vim"
 ## `frozing' tty, so after any command terminal settings will be restored
 #ttyctl -f
+KEYTIMEOUT=1
 VIMODE='-- INSERT --'
 function zle-line-init zle-keymap-select {
     VIMODE="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
@@ -116,3 +117,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 RPROMPT='%{$fg[red]%}${VIMODE}%{$reset_color%}'
+
+alias sshg='ssh qmxue@wangwen945.51vip.biz -p 21091'
+alias gits='git status'
+
+eval $(thefuck --alias)
