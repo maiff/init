@@ -118,7 +118,13 @@ zle -N zle-keymap-select
 
 RPROMPT='%{$fg[red]%}${VIMODE}%{$reset_color%}'
 
-alias sshg='ssh qmxue@wangwen945.51vip.biz -p 21091'
+alias vpn='sudo openconnect vpn-cn.ecnu.edu.cn --user=51184501170'
+alias sshg='ssh qmxue@58.198.177.46'
+alias sshe='ssh qmxue@wangwen945.51vip.biz -p 21091'
 alias gits='git status'
 
 eval $(thefuck --alias)
+
+# added by Anaconda3 installer
+export PATH="/home/xue/anaconda3/bin:$PATH"
+

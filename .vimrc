@@ -282,3 +282,5 @@
 	" 切换目录到当前编辑的文件
 	nnoremap <silent> <leader>. :cd %:p:h<CR>
 " }
+
+imap jj <ESC>
