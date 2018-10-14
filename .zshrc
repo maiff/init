@@ -120,7 +120,7 @@ RPROMPT='%{$fg[red]%}${VIMODE}%{$reset_color%}'
 
 alias vpn='sudo openconnect vpn-cn.ecnu.edu.cn --user=51184501170'
 alias sshg='ssh qmxue@58.198.177.46'
-alias ssh2='ssh qmxue@58.78.194.138'
+alias ssh2='ssh qmxue@59.78.194.138'
 alias sshe='ssh qmxue@wangwen945.51vip.biz -p 21091'
 alias gits='git status'
 
