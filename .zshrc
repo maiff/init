@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/xue/.oh-my-zsh
+  export ZSH=/home/qmxue/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -118,14 +118,11 @@ zle -N zle-keymap-select
 
 RPROMPT='%{$fg[red]%}${VIMODE}%{$reset_color%}'
 
-alias vpn='sudo openconnect vpn-cn.ecnu.edu.cn --user=51184501170'
-alias sshg='ssh qmxue@58.198.177.46'
-alias ssh2='ssh qmxue@59.78.194.138'
-alias sshe='ssh qmxue@wangwen945.51vip.biz -p 21091'
+alias sshg='ssh qmxue@wangwen945.51vip.biz -p 21091'
 alias gits='git status'
+alias gpu='watch --color gpustat --color'
 
 eval $(thefuck --alias)
+alias net='curl --silent -d "action=login&username=51184501170&password=281018020317&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 
-# added by Anaconda3 installer
-export PATH="/home/xue/anaconda3/bin:$PATH"
-
+export PATH="/home/qmxue/anaconda3/bin:$PATH"
