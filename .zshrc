@@ -121,8 +121,16 @@ RPROMPT='%{$fg[red]%}${VIMODE}%{$reset_color%}'
 alias sshg='ssh qmxue@wangwen945.51vip.biz -p 21091'
 alias gits='git status'
 alias gpus='watch --color gpustat --color'
+alias v='~/.linuxbrew/bin/vim'
 
 eval $(thefuck --alias)
-alias net='curl --silent -d "action=login&username=51184501170&password=281018020317&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
+alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 
 export PATH="/home/qmxue/anaconda3/bin:$PATH"
+
+export PATH="/home/qmxue/.linuxbrew/bin:$PATH"
+
+export PATH=$PATH:~/usr/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:~/usr/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/usr/include

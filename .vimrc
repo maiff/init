@@ -96,6 +96,8 @@
 	Plugin 'kien/ctrlp.vim'
 	Plugin 'mileszs/ack.vim'
     Plugin 'luochen1990/rainbow'
+    "Plugin 'Lokaltog/vim-powerline'
+    Plugin 'rking/ag.vim'
     " 绝对有用
     Plugin 'julienr/vim-cellmode'
     Plugin 'christoomey/vim-tmux-navigator'
@@ -114,10 +116,12 @@
 	Plugin 'tpope/vim-surround'
 	Plugin 'jiangmiao/auto-pairs'
 	Plugin 'ervandew/supertab'
-	Plugin 'Valloric/YouCompleteMe'
-	Plugin 'itchyny/lightline.vim'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'itchyny/lightline.vim'
 	Plugin 'fcitx.vim'
 	Plugin 'jnurmine/Zenburn'
+    Plugin 'zefei/vim-wintabs'
+    Plugin 'zefei/vim-wintabs-powerline'
 
 	" 你的所有插件需要在下面这行之前
 	call vundle#end()            " 必须
@@ -169,17 +173,19 @@
 	vmap <leader><Tab> :Tabularize /#/l2r1<enter>
 " }
 " ale{
+    let g:ale_linters = {'python': ['flake8', 'autopep8']}
 	let g:ale_change_sign_column_color=1
     let g:ale_python_flake8_options = '--ignore=E501'
     let g:ale_python_autopep8_options = '--ignore E501'
-  nmap <leader>ap <Plug>(ale_previous_wrap)
-  nmap <leader>an <Plug>(ale_next_wrap)
+    nmap <leader>ap <Plug>(ale_previous_wrap)
+    nmap <leader>an <Plug>(ale_next_wrap)
 " }
 " SimpylFold{
 	let g:SimpylFold_docstring_preview=1
 " }
 " 配色方案{
 	colorscheme zenburn
+    syntax on
 	hi Normal  ctermfg=252 ctermbg=none
 " }
 " ack.vim{
@@ -230,10 +236,26 @@
     let g:indentLine_char = '|'
     "let g:indentLine_bgcolor_term = 202
 " }
+
+" wintabs{
+    nmap Y <Plug>(wintabs_previous)
+    nmap U <Plug>(wintabs_next)
+    nmap <C-w>w <Plug>(wintabs_close)
+    nmap <C-w>u <Plug>(wintabs_undo)
+    nmap <C-w>o <Plug>(wintabs_only)
+    nmap <C-w>^ <Plug>(wintabs_first)
+    nmap <C-w>$ <Plug>(wintabs_last)
+    nmap - <Plug>(wintabs_move_left)
+    nmap + <Plug>(wintabs_move_right)
+    "map <C-w>c <Plug>(wintabs_close_window)
+    "map <C-w>o <Plug>(wintabs_only_window)
+" }
+
 " 通用设置{
 	set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 	set encoding=utf8
 	set number
+    set relativenumber
 	set cursorline
 	set cursorcolumn
 	set tabstop=4
@@ -243,6 +265,10 @@
     highlight cursorcolumn cterm=NONE ctermbg='black'
     highlight cursorline cterm=NONE ctermbg='brown'
     highlight colorcolumn cterm=NONE ctermbg='red'
+    hi Visual term=reverse cterm=reverse
+    set hls
+
+    set mouse=a
 
 	" 搜索时除非输入大写字母,否则不区分大小写
 	set ignorecase
@@ -259,11 +285,11 @@
 	nnoremap <C-h> <C-w><C-h>
 	nnoremap <C-l> <C-w><C-l>
 
-    nnoremap <leader>rc :tabe ~/.vimrc<CR>
+    nnoremap <leader>rc :e ~/.vimrc<CR>
 
 	"按S将一行拆分为两行
 	nnoremap S i<enter><esc>
-	map <enter> :w<enter>
+	nmap <s-enter> :w<enter>
 
 	" 命令提示菜单
 	set wildmenu
@@ -282,5 +308,3 @@
 	" 切换目录到当前编辑的文件
 	nnoremap <silent> <leader>. :cd %:p:h<CR>
 " }
-
-imap jj <ESC>
