@@ -122,6 +122,11 @@ alias sshg='ssh qmxue@wangwen945.51vip.biz -p 21091'
 alias gits='git status'
 alias gpus='watch --color gpustat --color'
 alias v='~/.linuxbrew/bin/vim'
+alias gpu0='CUDA_VISIBLE_DEVICES=0'
+alias gpu1='CUDA_VISIBLE_DEVICES=1'
+alias gpu2='CUDA_VISIBLE_DEVICES=2'
+alias gpu3='CUDA_VISIBLE_DEVICES=3'
+
 
 eval $(thefuck --alias)
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'

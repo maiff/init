@@ -173,7 +173,7 @@
 	vmap <leader><Tab> :Tabularize /#/l2r1<enter>
 " }
 " ale{
-    let g:ale_linters = {'python': ['flake8', 'autopep8']}
+    let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
 	let g:ale_change_sign_column_color=1
     let g:ale_python_flake8_options = '--ignore=E501'
     let g:ale_python_autopep8_options = '--ignore E501'
@@ -262,11 +262,12 @@
     set expandtab
     set colorcolumn=80
     set foldlevelstart=99
-    highlight cursorcolumn cterm=NONE ctermbg='black'
-    highlight cursorline cterm=NONE ctermbg='brown'
+    highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
+    highlight cursorline cterm=NONE ctermbg='DarkMagenta'
     highlight colorcolumn cterm=NONE ctermbg='red'
     hi Visual term=reverse cterm=reverse
     set hls
+    nmap <leader>r :source ~/.vimrc<enter>
 
     set mouse=a
 
