@@ -1,4 +1,4 @@
-" 语言相关功能{
+"语言相关功能{
 	map <f6> :call F6()<CR>
     command CancelDebug :call CancelDebug()
     command LatexToURL :call LatexToURL()
@@ -143,6 +143,10 @@
 "    set foldlevel=99
 "    nnoremap <space> za
 "" }
+" auto-pairs{
+	let g:AutoPairsShortcutJump = '<c-m-n>'
+	let g:AutoPairsShortcutToggle = '<c-m-p>'
+" }
 " jedi-vim{
 	let g:jedi#completions_enabled = 0
 	let g:jedi#goto_command = "<leader>d"
@@ -179,6 +183,8 @@
     let g:ale_python_autopep8_options = '--ignore E501'
     nmap <leader>ap <Plug>(ale_previous_wrap)
     nmap <leader>an <Plug>(ale_next_wrap)
+    nmap <m-p> <Plug>(ale_previous_wrap)
+    nmap <m-n> <Plug>(ale_next_wrap)
 " }
 " SimpylFold{
 	let g:SimpylFold_docstring_preview=1
@@ -268,6 +274,16 @@
     hi Visual term=reverse cterm=reverse
     set hls
     nmap <leader>r :source ~/.vimrc<enter>
+
+	" 使用alt键
+	let c='a'
+	while c <= 'z'
+	  exec "set <A-".c.">=\e".c
+	  exec "imap \e".c." <A-".c.">"
+	  let c = nr2char(1+char2nr(c))
+	endw
+	
+	set timeout ttimeoutlen=50
 
     set mouse=a
 
