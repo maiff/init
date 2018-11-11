@@ -138,15 +138,18 @@
 	" 查阅 :h vundle 获取更多细节和wiki以及FAQ
 	" 将你自己对非插件片段放在这行之后" 
 " }
+
 "" 折叠设置{
 "    set foldmethod=indent
 "    set foldlevel=99
 "    nnoremap <space> za
 "" }
+
 " auto-pairs{
 	let g:AutoPairsShortcutJump = '<c-m-n>'
 	let g:AutoPairsShortcutToggle = '<c-m-p>'
 " }
+
 " jedi-vim{
 	let g:jedi#completions_enabled = 0
 	let g:jedi#goto_command = "<leader>d"
@@ -157,25 +160,31 @@
 	let g:jedi#completions_command = "<C-J>"
 	let g:jedi#rename_command = "<leader>r"
 " }
+
 " NERDTree{
 	map <C-f> :NERDTreeToggle<CR>
 " }
+ 
 " Supertab{
 	let g:SuperTabDefaultCompletionType="<c-n>"
 " }
+
 " IndentGuides{
 	let g:indent_guides_enable_on_vim_startup = 1 "添加行，vim启动时启用
 	let g:indent_guides_start_level = 1           "添加行，开始显示对齐线的缩进级别
 	let g:indent_guides_guide_size = 1            "添加行，对齐线的宽度，（1字符）
 	let g:indent_guides_tab_guides = 0            "添加行，对tab对齐的禁用
 " }
+
 " YouCompleteMe{
 	let g:ycm_key_invoke_completion = '<C-/>'
 " }
+
 " Tabular{
 	nmap <leader><Tab> :Tabularize /#/l2r1<enter>
 	vmap <leader><Tab> :Tabularize /#/l2r1<enter>
 " }
+
 " ale{
     let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
 	let g:ale_change_sign_column_color=1
@@ -183,36 +192,44 @@
     let g:ale_python_autopep8_options = '--ignore E501'
     nmap <leader>ap <Plug>(ale_previous_wrap)
     nmap <leader>an <Plug>(ale_next_wrap)
-    nmap <m-p> <Plug>(ale_previous_wrap)
-    nmap <m-n> <Plug>(ale_next_wrap)
+    nmap - <Plug>(ale_previous_wrap)
+    nmap = <Plug>(ale_next_wrap)
 " }
+
 " SimpylFold{
 	let g:SimpylFold_docstring_preview=1
 " }
+
 " 配色方案{
 	colorscheme zenburn
     syntax on
 	hi Normal  ctermfg=252 ctermbg=none
 " }
+
 " ack.vim{
 	let g:ackprg = 'ag --nogroup --nocolor --column'
 " }
+
 " ctrlp{
 	let g:ctrlp_map = '<c-p>'
 " }
+
 " markdown-preview{
 	let g:mkdp_auto_start = 1
 	let g:mkdp_auto_open = 1
 	let g:mkdp_auto_close = 0
 " }
+
 " vmux{
     map <Leader>vp :VimuxPromptCommand<CR>
 " }
+
 " Autopep8{
     let g:autopep8_disable_show_diff=1
     let g:autopep8_ignore="E501,E722"
     let g:autopep8_max_line_length=1079
 "}
+
 " F8功能键{
 	map <F8> :call F8()<CR>
 
@@ -226,17 +243,21 @@
 		endif
 	endfunc
 " }
+
 " cellmode{
     let g:cellmode_tmux_sessionname=''
     let g:cellmode_tmux_windowname='ipython3'
     let g:cellmode_tmux_panenumber='1'
 " }
+
 " tagbar{
     nnoremap <leader>t :TagbarOpen fj<CR>
 " }
+
 " undotree{
     nnoremap <leader>u :UndotreeToggle<cr>
 " }
+
 " indentLine{
     let g:indentLine_color_term = 202
     let g:indentLine_char = '|'
@@ -251,7 +272,7 @@
     nmap <C-w>o <Plug>(wintabs_only)
     nmap <C-w>^ <Plug>(wintabs_first)
     nmap <C-w>$ <Plug>(wintabs_last)
-    nmap - <Plug>(wintabs_move_left)
+    nmap _ <Plug>(wintabs_move_left)
     nmap + <Plug>(wintabs_move_right)
     "map <C-w>c <Plug>(wintabs_close_window)
     "map <C-w>o <Plug>(wintabs_only_window)
@@ -275,13 +296,19 @@
     set hls
     nmap <leader>r :source ~/.vimrc<enter>
 
-	" 使用alt键
-	let c='a'
-	while c <= 'z'
-	  exec "set <A-".c.">=\e".c
-	  exec "imap \e".c." <A-".c.">"
-	  let c = nr2char(1+char2nr(c))
-	endw
+    " 窗口左右移动
+    nnoremap zl zL
+    nnoremap zL zl
+    nnoremap zh zH
+    nnoremap zH zh
+
+	"" 使用alt键
+	"let c='a'
+	"while c <= 'z'
+	"  exec "set <A-".c.">=\e".c
+	"  exec "imap \e".c." <A-".c.">"
+	"  let c = nr2char(1+char2nr(c))
+	"endw
 	
 	set timeout ttimeoutlen=50
 
