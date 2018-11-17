@@ -1,5 +1,5 @@
 "语言相关功能{
-	map <f6> :call F6()<CR>
+	noremap <f6> :call F6()<CR>
     command CancelDebug :call CancelDebug()
     command LatexToURL :call LatexToURL()
 
@@ -40,7 +40,7 @@
 " }
 
 " 调试运行{
-	map <F5> :call Debug()<CR>
+	noremap <F5> :call Debug()<CR>
     command Run :call Run()
 
 	func! Debug()
@@ -91,6 +91,7 @@
 	Plugin 'VundleVim/Vundle.vim'
 
     " 不一定有用
+    Plugin 'easymotion/vim-easymotion'
     Plugin 'tpope/vim-repeat'
     Plugin 'mbbill/undotree'
 	Plugin 'kien/ctrlp.vim'
@@ -162,7 +163,7 @@
 " }
 
 " NERDTree{
-	map <C-f> :NERDTreeToggle<CR>
+	noremap <C-f> :NERDTreeToggle<CR>
 " }
  
 " Supertab{
@@ -181,8 +182,8 @@
 " }
 
 " Tabular{
-	nmap <leader><Tab> :Tabularize /#/l2r1<enter>
-	vmap <leader><Tab> :Tabularize /#/l2r1<enter>
+	nnoremap <leader><Tab> :Tabularize /#/l2r1<enter>
+	vnoremap <leader><Tab> :Tabularize /#/l2r1<enter>
 " }
 
 " ale{
@@ -190,8 +191,6 @@
 	let g:ale_change_sign_column_color=1
     let g:ale_python_flake8_options = '--ignore=E501'
     let g:ale_python_autopep8_options = '--ignore E501'
-    nmap <leader>ap <Plug>(ale_previous_wrap)
-    nmap <leader>an <Plug>(ale_next_wrap)
     nmap - <Plug>(ale_previous_wrap)
     nmap = <Plug>(ale_next_wrap)
 " }
@@ -211,7 +210,8 @@
 " }
 
 " ctrlp{
-	let g:ctrlp_map = '<c-p>'
+	"let g:ctrlp_map = '<c-p>'
+    nnoremap <c-p> :CtrlP ~<enter>
 " }
 
 " markdown-preview{
@@ -221,7 +221,7 @@
 " }
 
 " vmux{
-    map <Leader>vp :VimuxPromptCommand<CR>
+    noremap <Leader>vp :VimuxPromptCommand<CR>
 " }
 
 " Autopep8{
@@ -231,7 +231,7 @@
 "}
 
 " F8功能键{
-	map <F8> :call F8()<CR>
+	noremap <F8> :call F8()<CR>
 
 	func! F8()
         " python下调整pep8格式
@@ -252,6 +252,8 @@
 
 " tagbar{
     nnoremap <leader>t :TagbarOpen fj<CR>
+    let g:tagbar_width = 20
+    let g:tagbar_left = 1
 " }
 
 " undotree{
@@ -274,8 +276,8 @@
     nmap <C-w>$ <Plug>(wintabs_last)
     nmap _ <Plug>(wintabs_move_left)
     nmap + <Plug>(wintabs_move_right)
-    "map <C-w>c <Plug>(wintabs_close_window)
-    "map <C-w>o <Plug>(wintabs_only_window)
+    "noremap <C-w>c <Plug>(wintabs_close_window)
+    "noremap <C-w>o <Plug>(wintabs_only_window)
 " }
 
 " 通用设置{
@@ -289,12 +291,26 @@
     set expandtab
     set colorcolumn=80
     set foldlevelstart=99
+    set hidden
+    set autoindent
+    set copyindent
+    set hls
+    set incsearch
+    set wildignore=*.swp,*.bak,*.pyc,*.class
+
+    let mapleader=','
+    let maplocalleader=','
+    nnoremap : ,
+    nnoremap <space> :
+
     highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
     highlight cursorline cterm=NONE ctermbg='DarkMagenta'
     highlight colorcolumn cterm=NONE ctermbg='red'
     hi Visual term=reverse cterm=reverse
-    set hls
-    nmap <leader>r :source ~/.vimrc<enter>
+
+    nnoremap <silent> <leader>rc :e $MYVIMRC<CR>
+    nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
+
 
     " 窗口左右移动
     nnoremap zl zL
@@ -306,7 +322,7 @@
 	"let c='a'
 	"while c <= 'z'
 	"  exec "set <A-".c.">=\e".c
-	"  exec "imap \e".c." <A-".c.">"
+	"  exec "inoremap \e".c." <A-".c.">"
 	"  let c = nr2char(1+char2nr(c))
 	"endw
 	
@@ -324,16 +340,15 @@
 	set nowrap
 
 	" 切换窗口快捷键
-	nnoremap <C-j> <C-w><C-j>
-	nnoremap <C-k> <C-w><C-k>
-	nnoremap <C-h> <C-w><C-h>
-	nnoremap <C-l> <C-w><C-l>
+	nmap <C-j> <C-w><C-j>
+	nmap <C-k> <C-w><C-k>
+	nmap <C-h> <C-w><C-h>
+	nmap <C-l> <C-w><C-l>
 
-    nnoremap <leader>rc :e ~/.vimrc<CR>
 
 	"按S将一行拆分为两行
 	nnoremap S i<enter><esc>
-	nmap <s-enter> :w<enter>
+	nnoremap <s-enter> :w<enter>
 
 	" 命令提示菜单
 	set wildmenu
