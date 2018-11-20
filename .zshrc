@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/qmxue/.oh-my-zsh
+  export ZSH=/home/xue/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -108,33 +108,32 @@ bindkey '^N' history-search-forward
 ## `frozing' tty, so after any command terminal settings will be restored
 #ttyctl -f
 KEYTIMEOUT=1
-VIMODE='-- INSERT --'
-function zle-line-init zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-    zle reset-prompt
-}
 zle -N zle-line-init 
 zle -N zle-keymap-select
 
-RPROMPT='%{$fg[red]%}${VIMODE}%{$reset_color%}'
+alias sshg='ssh qmxue@58.198.177.46'
+alias ssh2='ssh qmxue@59.78.194.138'
+alias ssh3='ssh qmxue@58.198.176.85'
 
-alias sshg='ssh qmxue@wangwen945.51vip.biz -p 21091'
 alias gits='git status'
+alias gitc='git commit -m'
+alias gita='git add'
+#alias v='~/.linuxbrew/bin/vim'
 alias gpus='watch --color gpustat --color'
-alias v='~/.linuxbrew/bin/vim'
 alias gpu0='CUDA_VISIBLE_DEVICES=0'
 alias gpu1='CUDA_VISIBLE_DEVICES=1'
 alias gpu2='CUDA_VISIBLE_DEVICES=2'
 alias gpu3='CUDA_VISIBLE_DEVICES=3'
 alias f='fuck'
 alias sa='source activate'
+alias rl='source ~/.zshrc'
 
 eval $(thefuck --alias)
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 
-export PATH="/home/qmxue/anaconda3/bin:$PATH"
+export PATH="/home/xue/anaconda3/bin:$PATH"
 
-export PATH="/home/qmxue/.linuxbrew/bin:$PATH"
+export PATH="/home/xue/.linuxbrew/bin:$PATH"
 
 export PATH=$PATH:~/usr/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
