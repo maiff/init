@@ -1,3 +1,69 @@
+" 通用设置{
+	set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+	set encoding=utf8
+	set number
+    set relativenumber
+	set cursorline
+	set cursorcolumn
+	set tabstop=4
+    set expandtab
+    set colorcolumn=80
+    set foldlevelstart=99
+    set hidden
+    set autoindent
+    set copyindent
+    set hls
+    set incsearch
+    set wildignore=*.swp,*.bak,*.pyc,*.class
+	" 搜索时除非输入大写字母,否则不区分大小写
+	set ignorecase
+	set smartcase
+	" 设置窗口分割方向
+	set splitbelow
+	set splitright
+	set nowrap
+	" 命令提示菜单
+	set wildmenu
+	" 设置永远显示状态栏
+	set laststatus=2
+	set noshowmode
+
+    " better key binding
+    let mapleader=','                             " leader key
+    "nnoremap : ,
+    nnoremap <space> :
+    nnoremap <bs> "_|                             " use backspace to delete things into the blackhole
+    nnoremap zl zL|                               " moving the view horizontally
+    nnoremap zL zl
+    nnoremap zh zH
+    nnoremap zH zh
+    nnoremap <silent> <leader>rc :e $MYVIMRC<CR>
+    nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
+	nmap <C-j> <C-w><C-j>|                        " swtich current window
+	nmap <C-k> <C-w><C-k>
+	nmap <C-h> <C-w><C-h>
+	nmap <C-l> <C-w><C-l>
+	nnoremap S i<enter><esc>
+	nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
+
+    " good-looking
+    highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
+    highlight cursorline cterm=NONE ctermbg='DarkMagenta'
+    highlight colorcolumn cterm=NONE ctermbg='red'
+    hi Visual term=reverse cterm=reverse
+
+	set timeout ttimeoutlen=50
+    set mouse=a
+
+	" GUI设定
+	if has("gui_running") 
+		"au GUIEnter * simalt ~x            " 窗口启动时自动最大化
+		set guioptions-=m                   " 隐藏菜单栏
+		set guioptions-=T                   " 隐藏工具栏
+		set guifont=Monospace\ Regular\ 15  " 字体
+	endif 
+" }
+
 " Plugins{
 	set nocompatible              " 去除VI一致性,必须
 	filetype off                  " 必须
@@ -12,14 +78,15 @@
 	Plugin 'VundleVim/Vundle.vim'
 
     " 不一定有用
+    "Plugin 'svermeulen/vim-easyclip'
     Plugin 'vim-scripts/LanguageTool'
     Plugin 'easymotion/vim-easymotion'
+    Plugin 'rbong/vim-buffest'
     " 绝对有用
     Plugin 'mbbill/undotree'
 	Plugin 'kien/ctrlp.vim'
 	Plugin 'mileszs/ack.vim'
     Plugin 'tpope/vim-repeat'
-    Plugin 'julienr/vim-cellmode'
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'majutsushi/tagbar'
     Plugin 'benmills/vimux'
@@ -45,6 +112,11 @@
 	" 你的所有插件需要在下面这行之前
 	call vundle#end()            " 必须
 	filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+
+    " zenburn
+    colorscheme zenburn
+    syntax on
+	hi Normal  ctermfg=252 ctermbg=none
 
     " auto-pairs
     let g:AutoPairsShortcutJump = '<c-m-n>'
@@ -76,8 +148,8 @@
     let g:ycm_key_invoke_completion = '<C-/>'
 
     " Tabular
-    nnoremap <leader><Tab> :Tabularize /#/l2r1<enter>
-    vnoremap <leader><Tab> :Tabularize /#/l2r1<enter>
+    nmap <leader><Tab> :Tabularize /#/l2r1<enter>
+    vmap <leader><Tab> :Tabularize /#/l2r1<enter>
 
     " ale
     let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
@@ -103,25 +175,20 @@
     let g:mkdp_auto_close = 0
 
     " vmux
-    noremap <Leader>vp :VimuxPromptCommand<CR>
+    map <Leader>vp :VimuxPromptCommand<CR>
 
     " Autopep8
     let g:autopep8_disable_show_diff=1
     let g:autopep8_ignore="E501,E722"
     let g:autopep8_max_line_length=1079
 
-    " cellmode
-    let g:cellmode_tmux_sessionname=''
-    let g:cellmode_tmux_windowname='ipython3'
-    let g:cellmode_tmux_panenumber='1'
-
     " tagbar
-    nnoremap <leader>t :TagbarOpen fj<CR>
+    nmap <leader>t :TagbarOpen fj<CR>
     let g:tagbar_width = 20
     let g:tagbar_left = 1
 
     " undotree
-    nnoremap <leader>u :UndotreeToggle<cr>
+    nmap <leader>u :UndotreeToggle<cr>
 
     " indentLine
     let g:indentLine_color_term = 202
@@ -144,6 +211,7 @@
 	noremap <f6> :call F6()<CR>
     command CancelDebug :call CancelDebug()
     command LatexToURL :call LatexToURL()
+    command CopyMode :call CopyMode()
 
 	func! F6()
 		" python文件设置断点
@@ -185,34 +253,34 @@
     command Run :call Run()
 
     func! Debug()
-            exec "w" 
-            if &filetype == 'c' 
-                    exec '!g++ % -o %<'
-                    exec '!time ./%<'
-            elseif &filetype == 'cpp'
-                    exec '!g++ % -o %<'
-                    exec '!time ./%<'
-            elseif &filetype == 'python'
-                    call VimuxRunCommand("ipython3")
-                    call VimuxRunCommand("%run ".bufname("%"))
-            elseif &filetype == 'sh'
-                    :!time bash %
-            endif                                                                              
+        exec "w" 
+        if &filetype == 'c' 
+            exec '!g++ % -o %<'
+            exec '!time ./%<'
+        elseif &filetype == 'cpp'
+            exec '!g++ % -o %<'
+            exec '!time ./%<'
+        elseif &filetype == 'python'
+            call VimuxRunCommand("ipython3")
+            call VimuxRunCommand("%run ".bufname("%"))
+        elseif &filetype == 'sh'
+            :!time bash %
+        endif                                                                              
     endfunc 
 
     func! Run()
-            exec "w" 
-            if &filetype == 'c' 
-                    exec '!g++ % -o %<'
-                    exec '!time ./%<'
-            elseif &filetype == 'cpp'
-                    exec '!g++ % -o %<'
-                    exec '!time ./%<'
-            elseif &filetype == 'python'
-                    call VimuxRunCommand("python3 " . bufname("%"))
-            elseif &filetype == 'sh'
-                    :!time bash %
-            endif                                                                              
+        exec "w" 
+        if &filetype == 'c' 
+            exec '!g++ % -o %<'
+            exec '!time ./%<'
+        elseif &filetype == 'cpp'
+            exec '!g++ % -o %<'
+            exec '!time ./%<'
+        elseif &filetype == 'python'
+            call VimuxRunCommand("python3 " . bufname("%"))
+        elseif &filetype == 'sh'
+            :!time bash %
+        endif                                                                              
     endfunc 
 
     " F8功能键
@@ -227,74 +295,12 @@
 			exec 'MarkdownPreview'
 		endif
 	endfunc
+
+	func! CopyMode()
+        set paste
+        set wrap
+        set nonumber
+        set norelativenumber
+    endfunc
 " }
 
-" 通用设置{
-	set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
-	set encoding=utf8
-	set number
-    set relativenumber
-	set cursorline
-	set cursorcolumn
-	set tabstop=4
-    set expandtab
-    set colorcolumn=80
-    set foldlevelstart=99
-    set hidden
-    set autoindent
-    set copyindent
-    set hls
-    set incsearch
-    set wildignore=*.swp,*.bak,*.pyc,*.class
-	" 搜索时除非输入大写字母,否则不区分大小写
-	set ignorecase
-	set smartcase
-	" 设置窗口分割方向
-	set splitbelow
-	set splitright
-	set nowrap
-	" 命令提示菜单
-	set wildmenu
-	" 设置永远显示状态栏
-	set laststatus=2
-	set noshowmode
-
-
-    " better key binding
-    let mapleader=','                             " leader key
-    let maplocalleader=','
-    nnoremap : ,
-    nnoremap <space> :
-    nnoremap zl zL                                " moving the view horizontally
-    nnoremap zL zl
-    nnoremap zh zH
-    nnoremap zH zh
-    nnoremap <silent> <leader>rc :e $MYVIMRC<CR>
-    nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
-	nmap <C-j> <C-w><C-j>                         " swtich current window
-	nmap <C-k> <C-w><C-k>
-	nmap <C-h> <C-w><C-h>
-	nmap <C-l> <C-w><C-l>
-	nnoremap S i<enter><esc>
-	nnoremap <silent> <leader>. :cd %:p:h<CR>     " switch the directory to the current file's
-
-    " good-looking
-	colorscheme zenburn
-    syntax on
-	hi Normal  ctermfg=252 ctermbg=none
-    highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
-    highlight cursorline cterm=NONE ctermbg='DarkMagenta'
-    highlight colorcolumn cterm=NONE ctermbg='red'
-    hi Visual term=reverse cterm=reverse
-
-	set timeout ttimeoutlen=50
-    set mouse=a
-
-	" GUI设定
-	if has("gui_running") 
-		"au GUIEnter * simalt ~x            " 窗口启动时自动最大化
-		set guioptions-=m                   " 隐藏菜单栏
-		set guioptions-=T                   " 隐藏工具栏
-		set guifont=Monospace\ Regular\ 15  " 字体
-	endif 
-" }
