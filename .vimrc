@@ -30,6 +30,7 @@
 
     " better key binding
     let mapleader=','                             " leader key
+    nnoremap \ ,
     "nnoremap : ,
     nnoremap <space> :
     nnoremap <bs> "_|                             " use backspace to delete things into the blackhole
@@ -39,18 +40,12 @@
     nnoremap zH zh
     nnoremap <silent> <leader>rc :e $MYVIMRC<CR>
     nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
-	nmap <C-j> <C-w><C-j>|                        " swtich current window
-	nmap <C-k> <C-w><C-k>
-	nmap <C-h> <C-w><C-h>
-	nmap <C-l> <C-w><C-l>
-	nnoremap S i<enter><esc>
-	nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
-
-    " good-looking
-    highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
-    highlight cursorline cterm=NONE ctermbg='DarkMagenta'
-    highlight colorcolumn cterm=NONE ctermbg='red'
-    hi Visual term=reverse cterm=reverse
+    nmap <C-j> <C-w><C-j>|                        " swtich current window
+    nmap <C-k> <C-w><C-k>
+    nmap <C-h> <C-w><C-h>
+    nmap <C-l> <C-w><C-l>
+    nnoremap S i<enter><esc>
+    nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
 
 	set timeout ttimeoutlen=50
     set mouse=a
@@ -79,6 +74,8 @@
 
     " 不一定有用
     "Plugin 'svermeulen/vim-easyclip'
+    Plugin 'ayuanx/vim-mark-standalone'
+    "Plugin 'inkarkat/vim-mark'
     Plugin 'vim-scripts/LanguageTool'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'rbong/vim-buffest'
@@ -117,6 +114,11 @@
     colorscheme zenburn
     syntax on
 	hi Normal  ctermfg=252 ctermbg=none
+    hi Visual term=reverse cterm=reverse
+    highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
+    highlight cursorline cterm=NONE ctermbg='DarkMagenta'
+    highlight colorcolumn cterm=NONE ctermbg='red'
+
 
     " auto-pairs
     let g:AutoPairsShortcutJump = '<c-m-n>'
@@ -205,6 +207,8 @@
     nmap <C-w>$ <Plug>(wintabs_last)
     nmap _ <Plug>(wintabs_move_left)
     nmap + <Plug>(wintabs_move_right)
+    let g:wintabs_ui_readonly = '|ro'
+    let g:wintabs_ui_buffer_name_format = '%n %t'
 " }
 
 " my own functions{
@@ -302,5 +306,28 @@
         set nonumber
         set norelativenumber
     endfunc
-" }
 
+	" Highlight all instances of word under cursor, when idle.
+	" Useful when studying strange source code.
+	" Type z/ to toggle highlighting on/off.
+	nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+	function! AutoHighlightToggle()
+	    let @/ = ''
+	    if exists('#auto_highlight')
+	        au! auto_highlight
+	        augroup! auto_highlight
+	        setl updatetime=4000
+	        echo 'Highlight current word: off'
+	        return 0
+	    else
+	        augroup auto_highlight
+	            au!
+	            au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+	        augroup end
+	        setl updatetime=500
+	        echo 'Highlight current word: ON'
+	        return 1
+	    endif
+	endfunction
+	
+" }
