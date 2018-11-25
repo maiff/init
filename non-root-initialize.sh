@@ -19,6 +19,7 @@ cd
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp ~/Home/.tmux.conf.local .
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # ipython installation
 pip3 install ipython
