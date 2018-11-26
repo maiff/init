@@ -21,9 +21,6 @@ ln -s -f .tmux/.tmux.conf
 cp ~/Home/.tmux.conf.local .
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# ipython installation
-pip3 install ipython
-
 source ~/.zshrc
 
 # youcompleteme compilation
@@ -37,7 +34,18 @@ cd -
 wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 chmod +x Anaconda3-5.2.0-Linux-x86_64.sh
 ./Anaconda3-5.2.0-Linux-x86_64.sh
+conda create -n py2 python=2.7
 
 # git configuration
 git config --global user.email "xueqianming200@gmail.com"
 git config --global user.name "Xue Qianming"
+
+# python libararies
+pip install tensorflow-gpu
+pip install ipython
+
+source activate py2
+pip install ipython
+pip install pandas
+pip install numpy
+pip install tensorflow-gpu
