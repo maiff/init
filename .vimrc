@@ -33,6 +33,7 @@
     nnoremap \ ,
     "nnoremap : ,
     nnoremap <space> :
+    vnoremap <space> :
     nnoremap <bs> "_|                             " use backspace to delete things into the blackhole
     nnoremap zl zL|                               " moving the view horizontally
     nnoremap zL zl
@@ -73,12 +74,17 @@
 	Plugin 'VundleVim/Vundle.vim'
 
     " 不一定有用
+    Plugin 'tpope/vim-capslock'
     "Plugin 'svermeulen/vim-easyclip'
     Plugin 'ayuanx/vim-mark-standalone'
+    "Plugin 'cjrh/vim-conda'
     "Plugin 'inkarkat/vim-mark'
-    Plugin 'vim-scripts/LanguageTool'
+    "Plugin 'vim-scripts/LanguageTool'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'rbong/vim-buffest'
+    "Plugin 'RltvNmbr.vim'
+    Plugin 'tpope/vim-fugitive'
+
     " 绝对有用
     Plugin 'mbbill/undotree'
 	Plugin 'kien/ctrlp.vim'
@@ -108,7 +114,19 @@
 
 	" 你的所有插件需要在下面这行之前
 	call vundle#end()            " 必须
-	filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+	"filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+
+    "" RltvNmbr
+	"call RltvNmbr#RltvNmbrCtrl(1)
+
+    " lightline
+    let g:lightline = {'colorscheme': 'default'}
+    let g:lightline.active = {
+        \ 'left': [ [ 'mode', 'paste' ],
+        \           [ 'readonly', 'relativepath', 'modified' ] ],
+        \ 'right': [ [ 'lineinfo' ],
+        \            [ 'percent' ],
+        \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 
     " zenburn
     colorscheme zenburn
@@ -208,7 +226,7 @@
     nmap _ <Plug>(wintabs_move_left)
     nmap + <Plug>(wintabs_move_right)
     let g:wintabs_ui_readonly = '|ro'
-    let g:wintabs_ui_buffer_name_format = '%n %t'
+    let g:wintabs_ui_buffer_name_format = '%n: %t'
 " }
 
 " my own functions{
@@ -307,27 +325,9 @@
         set norelativenumber
     endfunc
 
-	" Highlight all instances of word under cursor, when idle.
-	" Useful when studying strange source code.
-	" Type z/ to toggle highlighting on/off.
-	nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
-	function! AutoHighlightToggle()
-	    let @/ = ''
-	    if exists('#auto_highlight')
-	        au! auto_highlight
-	        augroup! auto_highlight
-	        setl updatetime=4000
-	        echo 'Highlight current word: off'
-	        return 0
-	    else
-	        augroup auto_highlight
-	            au!
-	            au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
-	        augroup end
-	        setl updatetime=500
-	        echo 'Highlight current word: ON'
-	        return 1
-	    endif
-	endfunction
-	
+" }
+
+" General settings 
+" {
+    set showcmd
 " }
