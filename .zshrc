@@ -134,6 +134,9 @@ alias sa='source activate'
 alias rl='source ~/.zshrc'
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 alias xdg='xdg-open'
+alias tb='nohup tensorboard --port 8288'
+alias du='ncdu'
+alias top='glances'
 
 eval $(thefuck --alias)
 
@@ -145,3 +148,4 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:~/usr/include
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/usr/include
 export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+source ~/.zshrc.local

@@ -5,7 +5,10 @@ test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home
 test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.bash_profile
 echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
 
-## vim installation
+# vifm installation
+brew install vifm
+
+# vim installation
 brew install vim
 
 # oh-my-zsh installation
@@ -49,3 +52,7 @@ pip install ipython
 pip install pandas
 pip install numpy
 pip install tensorflow-gpu
+
+
+brew install glances
+brew install ncdu
