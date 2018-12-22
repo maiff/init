@@ -284,11 +284,11 @@ set -g status-keys vi
 set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-#unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
+set -gu prefix2
+unbind C-a
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
 
 # move status line to top
 #set -g status-position top
@@ -302,7 +302,7 @@ bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
 bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
 bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 
-set allow-rename off
+set-option -g allow-rename off
 set -g @scroll-speed-num-lines-per-scroll 5
 
 # List of plugins
@@ -311,7 +311,6 @@ set -g @tpm_plugins '                  \
         tmux-plugins/tmux-sensible     \
         christoomey/vim-tmux-navigator \
         nhdaly/tmux-better-mouse-mode  \
-        tmux-plugins/tmux-copycat      \
 '
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)

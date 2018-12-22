@@ -35,6 +35,7 @@
     nnoremap <space> :
     vnoremap <space> :
     nnoremap <bs> "_|                             " use backspace to delete things into the blackhole
+    vnoremap <bs> "_|                             " use backspace to delete things into the blackhole
     nnoremap zl zL|                               " moving the view horizontally
     nnoremap zL zl
     nnoremap zh zH
@@ -87,7 +88,7 @@
 
     " 绝对有用
     Plugin 'mbbill/undotree'
-	Plugin 'kien/ctrlp.vim'
+	"Plugin 'kien/ctrlp.vim'
 	Plugin 'mileszs/ack.vim'
     Plugin 'tpope/vim-repeat'
     Plugin 'christoomey/vim-tmux-navigator'
@@ -112,12 +113,19 @@
     Plugin 'zefei/vim-wintabs'
     Plugin 'zefei/vim-wintabs-powerline'
 
+    " enable plugin fzf
+    set rtp+=/home/$USER/.linuxbrew/opt/fzf
+
 	" 你的所有插件需要在下面这行之前
 	call vundle#end()            " 必须
 	"filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
 
     "" RltvNmbr
 	"call RltvNmbr#RltvNmbrCtrl(1)
+
+    " fzf
+    nnoremap <c-p> :FZF<enter>
+    nnoremap <c-s-p> :FZF |
 
     " lightline
     let g:lightline = {'colorscheme': 'default'}
@@ -187,7 +195,7 @@
 
     " ctrlp
     "let g:ctrlp_map = '<c-p>'
-    nnoremap <c-p> :CtrlP ~<enter>
+    "nnoremap <c-p> :CtrlP ~<enter>
 
     " markdown-preview
     let g:mkdp_auto_start = 1
@@ -257,9 +265,11 @@
 	func! CancelDebug()
 		" python文件取消调试
 		if &filetype == 'python'
+		    let l:winview = winsaveview()
 			exec 'g/\v(^[ \t#]*ipdb\.|^import ipdb$)/d'
 			exec 'g/\v(^[ \t#]*pdb\.|^import pdb$)/d'
 			exec 'write'
+            call winrestview(l:winview)
         endif
 	endfunc
 
@@ -318,16 +328,25 @@
 		endif
 	endfunc
 
+	let g:isCopyMode = 0
 	func! CopyMode()
-        set paste
-        set wrap
-        set nonumber
-        set norelativenumber
+		if g:isCopyMode == 0
+			let g:isCopyMode = 1
+			set paste
+			set wrap
+			set nonumber
+			set norelativenumber
+		else
+			let g:isCopyMode = 0
+			set nowrap
+			set number
+			set relativenumber
+		endif
     endfunc
-
 " }
 
 " General settings 
 " {
     set showcmd
 " }
+
