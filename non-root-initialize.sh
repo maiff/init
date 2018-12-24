@@ -13,6 +13,11 @@ brew install vim
 
 # oh-my-zsh installation
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone git@github.com:petronny/pinyin-completion.git
+cd pinyin-completion
+sudo ./setup.py install
+source shell/pinyin-comp.zsh
+
 
 # configuration files importation
 rsync -av ./ ~/
