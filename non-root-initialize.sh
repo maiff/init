@@ -5,11 +5,9 @@ test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home
 test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.bash_profile
 echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
 
-# vifm installation
-brew install vifm
-
 # vim installation
 brew install vim
+brew install nvim
 
 # oh-my-zsh installation
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -47,12 +45,20 @@ git config --global user.name "Xue Qianming"
 pip install tensorflow-gpu
 pip install ipython
 
+# nvim configuration
+pip install --upgrade neovim
+mkdir ~/.config/nvim
+touch ~/.config/nvim/init.vim
+echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after' >>  ~/.config/nvim/init.vim
+echo 'let &packpath = &runtimepath' >>  ~/.config/nvim/init.vim
+echo 'source ~/.vimrc' >>  ~/.config/nvim/init.vim
+
 source activate py2
 pip install ipython
 pip install pandas
 pip install numpy
 pip install tensorflow-gpu
 
-
 brew install glances
+brew install ranger
 brew install ncdu
