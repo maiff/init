@@ -109,7 +109,7 @@ bindkey '^N' history-search-forward
 #ttyctl -f
 KEYTIMEOUT=1
 zle -N zle-line-init 
-zle -N zle-keymap-select
+#zle -N zle-keymap-select
 
 # type less
 aida='58.198.177.46'
@@ -118,7 +118,6 @@ titan='58.198.176.85'
 alias sshg='ssh qmxue@58.198.177.46'
 alias ssh2='ssh qmxue@59.78.194.138'
 alias ssh3='ssh qmxue@58.198.176.85'
-alias ssshg='ssh server@58.198.177.46'
 alias sssh2='ssh server@59.78.194.138'
 alias sshw='ssh qmxue@59.78.194.173'
 alias gits='git status'
@@ -135,14 +134,19 @@ alias sa='source activate'
 alias rl='source ~/.zshrc'
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 alias xdg='xdg-open'
+alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
+alias cl='clear'
+
+alias du='ncdu'
+alias top='glances'
 
 eval $(thefuck --alias)
 
 export PATH="/home/$USER/anaconda3/bin:$PATH"
 export PATH="/home/$USER/.linuxbrew/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export PATH=$PATH:~/usr/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:~/usr/include
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/usr/include
 export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+source ~/.zshrc.local

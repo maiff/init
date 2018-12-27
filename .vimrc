@@ -15,6 +15,7 @@
     set hls
     set incsearch
     set wildignore=*.swp,*.bak,*.pyc,*.class
+    set backspace=start,indent
 	" 搜索时除非输入大写字母,否则不区分大小写
 	set ignorecase
 	set smartcase
@@ -48,6 +49,7 @@
     nmap <C-l> <C-w><C-l>
     nnoremap S i<enter><esc>
     nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
+    nnoremap <c-s-l> :redraw!<CR>
 
 	set timeout ttimeoutlen=50
     set mouse=a
@@ -76,15 +78,13 @@
 
     " 不一定有用
     Plugin 'tpope/vim-capslock'
-    "Plugin 'svermeulen/vim-easyclip'
+    Plugin 'chrisbra/csv.vim'
+    Plugin 'flazz/vim-colorschemes'
     Plugin 'ayuanx/vim-mark-standalone'
-    "Plugin 'cjrh/vim-conda'
-    "Plugin 'inkarkat/vim-mark'
-    "Plugin 'vim-scripts/LanguageTool'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'rbong/vim-buffest'
-    "Plugin 'RltvNmbr.vim'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'junegunn/fzf.vim'
 
     " 绝对有用
     Plugin 'mbbill/undotree'
@@ -124,8 +124,8 @@
 	"call RltvNmbr#RltvNmbrCtrl(1)
 
     " fzf
-    nnoremap <c-p> :FZF<enter>
-    nnoremap <c-s-p> :FZF |
+    nnoremap <c-p> :FZF |
+    nnoremap <silent> <leader>/ :BLines<enter>
 
     " lightline
     let g:lightline = {'colorscheme': 'default'}
@@ -144,6 +144,16 @@
     highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
     highlight cursorline cterm=NONE ctermbg='DarkMagenta'
     highlight colorcolumn cterm=NONE ctermbg='red'
+    "hi DiffAdd          ctermbg=235  ctermfg=108  guibg=#262626 guifg=#87af87 cterm=reverse        gui=reverse
+    "hi DiffChange       ctermbg=235  ctermfg=103  guibg=#262626 guifg=#8787af cterm=reverse        gui=reverse
+    "hi DiffDelete       ctermbg=235  ctermfg=131  guibg=#262626 guifg=#af5f5f cterm=reverse        gui=reverse
+    "hi DiffText         ctermbg=235  ctermfg=208  guibg=#262626 guifg=#ff8700 cterm=reverse        gui=reverse
+    hi DiffAdd          ctermbg=black       ctermfg=green       cterm=reverse
+    hi DiffChange       ctermbg=black       ctermfg=magenta     cterm=reverse
+    hi DiffDelete       ctermbg=black       ctermfg=darkred     cterm=reverse
+    hi DiffText         ctermbg=black       ctermfg=red         cterm=reverse
+
+
 
 
     " auto-pairs
@@ -161,7 +171,7 @@
     let g:jedi#rename_command = "<leader>r"
 
     " NERDTree
-    noremap <C-f> :NERDTreeToggle<CR>
+    noremap <C-f> :NERDTree<CR>
 
     " Supertab
     let g:SuperTabDefaultCompletionType="<c-n>"
@@ -186,6 +196,10 @@
     let g:ale_python_autopep8_options = '--ignore E501'
     nmap - <Plug>(ale_previous_wrap)
     nmap = <Plug>(ale_next_wrap)
+
+    " mark.vim
+    nmap <leader>msan <Plug>MarkSearchAnyNext
+    let g:mwDefaultHighlightingPalette = 'extended'
 
     " SimpylFold
     let g:SimpylFold_docstring_preview=1
@@ -246,11 +260,14 @@
 	func! F6()
 		" python文件设置断点
 		if &filetype == 'python'
-            let s:first_line = getline(1)
-            if s:first_line != 'import ipdb'
-                call append(0, 'import ipdb')
-            endif
+            "let s:first_line = getline(1)
+            "if s:first_line != 'import ipdb'
+            "    call append(0, 'import ipdb')
+            "endif
 			let s:n_indent = indent('.')
+			let append_content = 'import ipdb'
+			let append_content = repeat(' ', s:n_indent).append_content
+			call append(line('.') - 1, append_content)
 			let append_content = 'ipdb.set_trace()'
 			let append_content = repeat(' ', s:n_indent).append_content
 			call append(line('.') - 1, append_content)
@@ -266,8 +283,7 @@
 		" python文件取消调试
 		if &filetype == 'python'
 		    let l:winview = winsaveview()
-			exec 'g/\v(^[ \t#]*ipdb\.|^import ipdb$)/d'
-			exec 'g/\v(^[ \t#]*pdb\.|^import pdb$)/d'
+			exec 'g/\v(^[ \t#]*i?pdb\.|^[ \t#]*import i?pdb$)/d'
 			exec 'write'
             call winrestview(l:winview)
         endif
@@ -338,6 +354,7 @@
 			set norelativenumber
 		else
 			let g:isCopyMode = 0
+            set nopaste
 			set nowrap
 			set number
 			set relativenumber
