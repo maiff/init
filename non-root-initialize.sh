@@ -1,31 +1,19 @@
-# brew installation
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
-test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.bash_profile
-echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
-
-# vim installation
-brew install vim
-brew install nvim
-
-# oh-my-zsh installation
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone git@github.com:petronny/pinyin-completion.git
-cd pinyin-completion
-sudo ./setup.py install
-source shell/pinyin-comp.zsh
-
-
+## brew installation
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+#test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
+#test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+#test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.bash_profile
+#echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
+#
+## oh-my-zsh installation
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#git clone git@github.com:petronny/pinyin-completion.git
+#cd pinyin-completion
+#sudo ./setup.py install
+#source shell/pinyin-comp.zsh
+#
 # configuration files importation
 rsync -av ./ ~/
-
-# tmux configuration
-cd
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp ~/Home/.tmux.conf.local .
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 source ~/.zshrc
 
@@ -64,6 +52,11 @@ pip install pandas
 pip install numpy
 pip install tensorflow-gpu
 
+# vim installation
 brew install glances
 brew install ranger
 brew install ncdu
+brew install vim
+brew install nvim
+
+source ./tmux.sh
