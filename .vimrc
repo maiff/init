@@ -67,58 +67,51 @@
 	set nocompatible              " 去除VI一致性,必须
 	filetype off                  " 必须
 
-	" 设置包括vundle和初始化相关的runtime path
-	set rtp+=~/.vim/bundle/Vundle.vim
-	call vundle#begin()
-	" 另一种选择, 指定一个vundle安装插件的路径
-	"call vundle#begin('~/some/path/here')
-
-	" 让vundle管理插件版本,必须
-	Plugin 'VundleVim/Vundle.vim'
+	call plug#begin('~/.vim/plugged')
 
     " 不一定有用
-    Plugin 'tpope/vim-capslock'
-    Plugin 'chrisbra/csv.vim'
-    Plugin 'flazz/vim-colorschemes'
-    Plugin 'ayuanx/vim-mark-standalone'
-    Plugin 'easymotion/vim-easymotion'
-    Plugin 'rbong/vim-buffest'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'junegunn/fzf.vim'
+    Plug 'tpope/vim-capslock'
+    Plug 'chrisbra/csv.vim'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'ayuanx/vim-mark-standalone'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'rbong/vim-buffest'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/fzf.vim'
 
     " 绝对有用
-    Plugin 'mbbill/undotree'
-	"Plugin 'kien/ctrlp.vim'
-	Plugin 'mileszs/ack.vim'
-    Plugin 'tpope/vim-repeat'
-    Plugin 'christoomey/vim-tmux-navigator'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'benmills/vimux'
-    Plugin 'Yggdroot/indentLine'
-	Plugin 'godlygeek/tabular'
-	Plugin 'tmhedberg/SimpylFold'
-	Plugin 'w0rp/ale'
-	Plugin 'davidhalter/jedi-vim'
-	Plugin 'scrooloose/nerdcommenter'
-	Plugin 'iamcco/markdown-preview.vim'
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'tell-k/vim-autopep8'
-	Plugin 'tpope/vim-surround'
-	Plugin 'jiangmiao/auto-pairs'
-	Plugin 'ervandew/supertab'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'itchyny/lightline.vim'
-	Plugin 'fcitx.vim'
-	Plugin 'jnurmine/Zenburn'
-    Plugin 'zefei/vim-wintabs'
-    Plugin 'zefei/vim-wintabs-powerline'
+    Plug 'mbbill/undotree'
+	"Plug 'kien/ctrlp.vim'
+	Plug 'mileszs/ack.vim'
+    Plug 'tpope/vim-repeat'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'majutsushi/tagbar'
+    Plug 'benmills/vimux'
+    Plug 'Yggdroot/indentLine'
+	Plug 'godlygeek/tabular'
+	Plug 'tmhedberg/SimpylFold'
+	Plug 'w0rp/ale'
+	Plug 'davidhalter/jedi-vim'
+	Plug 'scrooloose/nerdcommenter'
+	Plug 'iamcco/markdown-preview.vim'
+	Plug 'scrooloose/nerdtree'
+	Plug 'tell-k/vim-autopep8'
+	Plug 'tpope/vim-surround'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'ervandew/supertab'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'itchyny/lightline.vim'
+	Plug 'fcitx.vim'
+	Plug 'jnurmine/Zenburn'
+    Plug 'zefei/vim-wintabs'
+    Plug 'zefei/vim-wintabs-powerline'
 
     " enable plugin fzf
     set rtp+=/home/$USER/.linuxbrew/opt/fzf
 
 	" 你的所有插件需要在下面这行之前
-	call vundle#end()            " 必须
-	"filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+	call plug#end()
+	filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
 
     "" RltvNmbr
 	"call RltvNmbr#RltvNmbrCtrl(1)
