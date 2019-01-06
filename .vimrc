@@ -28,6 +28,7 @@
 	" 设置永远显示状态栏
 	set laststatus=2
 	set noshowmode
+	set t_Co=256
 
     " better key binding
     let mapleader=','                             " leader key
@@ -41,15 +42,14 @@
     nnoremap zL zl
     nnoremap zh zH
     nnoremap zH zh
-    nnoremap <silent> <leader>rc :e $MYVIMRC<CR>
+    nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
     nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
-    nmap <C-j> <C-w><C-j>|                        " swtich current window
-    nmap <C-k> <C-w><C-k>
-    nmap <C-h> <C-w><C-h>
-    nmap <C-l> <C-w><C-l>
+    "nnoremap <C-j> <C-w><C-j>|                        " swtich current window
+    "nnoremap <C-k> <C-w><C-k>
+    "nnoremap <C-h> <C-w><C-h>
+    "nnoremap <C-l> <C-w><C-l>
     nnoremap S i<enter><esc>
     nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
-    nnoremap <c-s-l> :redraw!<CR>
 
 	set timeout ttimeoutlen=50
     set mouse=a
@@ -85,6 +85,7 @@
     Plugin 'rbong/vim-buffest'
     Plugin 'tpope/vim-fugitive'
     Plugin 'junegunn/fzf.vim'
+    Plugin 'mru.vim'
 
     " 绝对有用
     Plugin 'mbbill/undotree'
@@ -153,12 +154,10 @@
     hi DiffDelete       ctermbg=black       ctermfg=darkred     cterm=reverse
     hi DiffText         ctermbg=black       ctermfg=red         cterm=reverse
 
-
-
-
     " auto-pairs
-    let g:AutoPairsShortcutJump = '<c-m-n>'
-    let g:AutoPairsShortcutToggle = '<c-m-p>'
+    let g:AutoPairsShortcutJump = ''
+    let g:AutoPairsShortcutToggle = ''
+    let g:AutoPairsShortcutBackInsert = ''
 
     " jedi-vim
     let g:jedi#completions_enabled = 0
@@ -171,7 +170,7 @@
     let g:jedi#rename_command = "<leader>r"
 
     " NERDTree
-    noremap <C-f> :NERDTree<CR>
+    noremap <C-f> :cd %:p:h<CR>:NERDTree<CR>
 
     " Supertab
     let g:SuperTabDefaultCompletionType="<c-n>"
@@ -253,9 +252,9 @@
 
 " my own functions{
 	noremap <f6> :call F6()<CR>
-    command CancelDebug :call CancelDebug()
-    command LatexToURL :call LatexToURL()
-    command CopyMode :call CopyMode()
+    command! CancelDebug :call CancelDebug()
+    command! LatexToURL :call LatexToURL()
+    command! CopyMode :call CopyMode()
 
 	func! F6()
 		" python文件设置断点
@@ -298,7 +297,7 @@
 
     " 调试运行
     noremap <F5> :call Debug()<CR>
-    command Run :call Run()
+    command! Run :call Run()
 
     func! Debug()
         exec "w" 
@@ -352,12 +351,14 @@
 			set wrap
 			set nonumber
 			set norelativenumber
+			exec 'IndentLinesDisable'
 		else
 			let g:isCopyMode = 0
             set nopaste
 			set nowrap
 			set number
 			set relativenumber
+			exec 'IndentLinesDisable'
 		endif
     endfunc
 " }
@@ -367,3 +368,18 @@
     set showcmd
 " }
 
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-u> <Right><ESC>d<Home>i
+inoremap <C-k> <Right><ESC>d<End>a
+inoremap <C-t> <Right><ESC>xpi
+inoremap <M-b> <Right><ESC>bi
+inoremap <M-f> <Right><ESC>wi
+inoremap <M-h> <Right><ESC>dbi
+inoremap <M-d> <Right><ESC>dwi
