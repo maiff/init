@@ -79,6 +79,7 @@
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/fzf.vim'
     Plug 'yegappan/mru'
+    Plug 'chrisbra/vim-diff-enhanced'
 
     " 绝对有用
     Plug 'mbbill/undotree'
@@ -102,7 +103,7 @@
 	Plug 'ervandew/supertab'
     Plug 'Valloric/YouCompleteMe'
     Plug 'itchyny/lightline.vim'
-	Plug 'fcitx.vim'
+	"Plug 'fcitx.vim'
 	Plug 'jnurmine/Zenburn'
     Plug 'zefei/vim-wintabs'
     Plug 'zefei/vim-wintabs-powerline'
@@ -376,3 +377,8 @@ inoremap <M-b> <Right><ESC>bi
 inoremap <M-f> <Right><ESC>wi
 inoremap <M-h> <Right><ESC>dbi
 inoremap <M-d> <Right><ESC>dwi
+
+let g:python_location = system('which python')
+let g:python_location = substitute(g:python_location, '\n', '', 'g')
+let g:python3_host_prog=g:python_location
+
