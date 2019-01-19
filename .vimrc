@@ -1,4 +1,5 @@
 " 通用设置{
+    let mapleader=','                             " leader key
 	set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 	set encoding=utf8
 	set number
@@ -30,27 +31,6 @@
 	set noshowmode
 	set t_Co=256
 
-    " better key binding
-    let mapleader=','                             " leader key
-    nnoremap \ ,
-    "nnoremap : ,
-    nnoremap <space> :
-    vnoremap <space> :
-    nnoremap <bs> "_|                             " use backspace to delete things into the blackhole
-    vnoremap <bs> "_|                             " use backspace to delete things into the blackhole
-    nnoremap zl zL|                               " moving the view horizontally
-    nnoremap zL zl
-    nnoremap zh zH
-    nnoremap zH zh
-    nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
-    nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
-    "nnoremap <C-j> <C-w><C-j>|                        " swtich current window
-    "nnoremap <C-k> <C-w><C-k>
-    "nnoremap <C-h> <C-w><C-h>
-    "nnoremap <C-l> <C-w><C-l>
-    nnoremap S i<enter><esc>
-    nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
-
 	set timeout ttimeoutlen=50
     set mouse=a
 
@@ -70,18 +50,24 @@
 	call plug#begin('~/.vim/plugged')
 
     " 不一定有用
-    Plug 'tpope/vim-capslock'
     Plug 'chrisbra/csv.vim'
     Plug 'flazz/vim-colorschemes'
-    Plug 'ayuanx/vim-mark-standalone'
     Plug 'easymotion/vim-easymotion'
     Plug 'rbong/vim-buffest'
     Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/fzf.vim'
     Plug 'yegappan/mru'
     Plug 'chrisbra/vim-diff-enhanced'
+    Plug 'plasticboy/vim-markdown'
+    "Plug 'julienr/vim-cellmode'
+    "Plug 'ivanov/vim-ipython'
+    Plug 'bfredl/nvim-ipy'
+    "Plug 'cjrh/vim-conda'
+    "Plug 'Vigemus/iron.nvim'
+    "Plug 'szymonmaszke/vimpyter'
+    "Plug 'jjhelmus/vim-ipython'
 
     " 绝对有用
+    Plug 'tpope/vim-capslock'
     Plug 'mbbill/undotree'
 	"Plug 'kien/ctrlp.vim'
 	Plug 'mileszs/ack.vim'
@@ -107,6 +93,8 @@
 	Plug 'jnurmine/Zenburn'
     Plug 'zefei/vim-wintabs'
     Plug 'zefei/vim-wintabs-powerline'
+    Plug 'junegunn/fzf.vim'
+    Plug 'ayuanx/vim-mark-standalone'
 
     " enable plugin fzf
     set rtp+=/home/$USER/.linuxbrew/opt/fzf
@@ -115,8 +103,19 @@
 	call plug#end()
 	filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
 
-    "" RltvNmbr
-	"call RltvNmbr#RltvNmbrCtrl(1)
+    " nvim-ipy
+    let g:nvim_ipy_perform_mappings = 0
+    nmap <leader>i :Ipy<CR>
+    nmap <silent> <CR> <Plug>(IPy-Run)j0
+    vmap <silent> <CR> <Plug>(IPy-Run)
+    nmap <silent> <c-s> <Plug>(IPy-RunCell)
+    imap <silent> <c-i> <Plug>(IPy-Complete)
+    "nmap <silent> ? <Plug>(IPy-WordObjInfo)
+    nmap <silent> <c-c> <Plug>(IPy-Interrupt)
+    nmap <silent> <c-t> <Plug>(IPy-Terminate)
+
+    " vim-markdown
+    let g:vim_markdown_conceal = 0
 
     " fzf
     nnoremap <c-p> :FZF |
@@ -124,8 +123,10 @@
 
     " lightline
     let g:lightline = {'colorscheme': 'default'}
+    "let g:lightline.component_expand = {
+    "    \ 'currenttag': tagbar#currenttag('%s', '')}
     let g:lightline.active = {
-        \ 'left': [ [ 'mode', 'paste' ],
+        \ 'left': [ [ 'mode', 'paste'],
         \           [ 'readonly', 'relativepath', 'modified' ] ],
         \ 'right': [ [ 'lineinfo' ],
         \            [ 'percent' ],
@@ -134,7 +135,7 @@
     " zenburn
     colorscheme zenburn
     syntax on
-	hi Normal  ctermfg=252 ctermbg=none
+    hi Normal  ctermfg=252 ctermbg=none
     hi Visual term=reverse cterm=reverse
     highlight cursorcolumn cterm=NONE ctermbg='DarkBlue'
     highlight cursorline cterm=NONE ctermbg='DarkMagenta'
@@ -164,7 +165,7 @@
     let g:jedi#rename_command = "<leader>r"
 
     " NERDTree
-    noremap <C-f> :cd %:p:h<CR>:NERDTree<CR>
+    nnoremap <C-f> :cd %:p:h<CR>:NERDTree<CR>
 
     " Supertab
     let g:SuperTabDefaultCompletionType="<c-n>"
@@ -200,10 +201,6 @@
     " ack.vim
     let g:ackprg = 'ag --nogroup --nocolor --column'
 
-    " ctrlp
-    "let g:ctrlp_map = '<c-p>'
-    "nnoremap <c-p> :CtrlP ~<enter>
-
     " markdown-preview
     let g:mkdp_auto_start = 1
     let g:mkdp_auto_open = 1
@@ -218,7 +215,7 @@
     let g:autopep8_max_line_length=1079
 
     " tagbar
-    nmap <leader>t :TagbarOpen fj<CR>
+    nnoremap <leader>t :TagbarOpen fj<CR>
     let g:tagbar_width = 20
     let g:tagbar_left = 1
 
@@ -227,7 +224,7 @@
 
     " indentLine
     let g:indentLine_color_term = 202
-    let g:indentLine_char = '|'
+    let g:indentLine_char = '│'
     "let g:indentLine_bgcolor_term = 202
 
     " wintabs
@@ -382,3 +379,23 @@ let g:python_location = system('which python')
 let g:python_location = substitute(g:python_location, '\n', '', 'g')
 let g:python3_host_prog=g:python_location
 
+" better key binding
+nnoremap \ ,
+"nnoremap : ,
+nnoremap <space> :
+vnoremap <space> :
+nnoremap <bs> "_|                             " use backspace to delete things into the blackhole
+vnoremap <bs> "_|                             " use backspace to delete things into the blackhole
+nnoremap zl zL|                               " moving the view horizontally
+nnoremap zL zl
+nnoremap zh zH
+nnoremap zH zh
+nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
+nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
+"nnoremap <C-j> <C-w><C-j>|                        " swtich current window
+"nnoremap <C-k> <C-w><C-k>
+"nnoremap <C-h> <C-w><C-h>
+"nnoremap <C-l> <C-w><C-l>
+nnoremap S i<enter><esc>
+nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
+tnoremap <Esc><Esc> <C-\><C-n>
