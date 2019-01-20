@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     javascript
      python
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -38,17 +39,18 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
+     git
+     markdown
+     org
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     spell-checking
+     syntax-checking
+     ipython-notebook
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -128,8 +130,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(wombat
-                         spacemacs-dark
-                         spacemacs-light)
+                         molokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -292,7 +293,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -300,6 +301,7 @@ values."
     '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+(setenv "WORKON_HOME" "/home/qmxue/anaconda3/envs")
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
@@ -315,6 +317,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (spacemacs/toggle-indent-guide)
   (spacemacs/toggle-truncate-lines-on)
   ;; Visual line navigation for textual modes
   (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
@@ -334,7 +337,7 @@ you should place your code here."
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(package-selected-packages
    (quote
-    (yapfify ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode dash-functional hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed anaconda-mode pythonic ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree org-plus-contrib hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy))))
+    (ein deferred websocket xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor company-tern tern company-statistics company-anaconda company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode dash-functional hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed anaconda-mode pythonic ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree org-plus-contrib hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
