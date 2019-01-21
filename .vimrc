@@ -60,11 +60,20 @@
     Plug 'plasticboy/vim-markdown'
     "Plug 'julienr/vim-cellmode'
     "Plug 'ivanov/vim-ipython'
-    Plug 'bfredl/nvim-ipy'
+    "Plug 'SleepyBag/nvim-ipy'
     "Plug 'cjrh/vim-conda'
     "Plug 'Vigemus/iron.nvim'
     "Plug 'szymonmaszke/vimpyter'
     "Plug 'jjhelmus/vim-ipython'
+    "Plug 'prabirshrestha/async.vim'
+    "Plug 'prabirshrestha/asyncomplete.vim'
+    "Plug 'prabirshrestha/vim-lsp'
+    Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
     " 绝对有用
     Plug 'tpope/vim-capslock'
@@ -78,16 +87,16 @@
     Plug 'Yggdroot/indentLine'
 	Plug 'godlygeek/tabular'
 	Plug 'tmhedberg/SimpylFold'
-	Plug 'w0rp/ale'
-	Plug 'davidhalter/jedi-vim'
+	"Plug 'w0rp/ale'
+    Plug 'davidhalter/jedi-vim'
 	Plug 'scrooloose/nerdcommenter'
 	Plug 'iamcco/markdown-preview.vim'
 	Plug 'scrooloose/nerdtree'
 	Plug 'tell-k/vim-autopep8'
 	Plug 'tpope/vim-surround'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'ervandew/supertab'
-    Plug 'Valloric/YouCompleteMe'
+	"Plug 'ervandew/supertab'
+    "Plug 'Valloric/YouCompleteMe'
     Plug 'itchyny/lightline.vim'
 	"Plug 'fcitx.vim'
 	Plug 'jnurmine/Zenburn'
@@ -103,16 +112,54 @@
 	call plug#end()
 	filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
 
-    " nvim-ipy
-    let g:nvim_ipy_perform_mappings = 0
-    nmap <leader>i :Ipy<CR>
-    nmap <silent> <CR> <Plug>(IPy-Run)j0
-    vmap <silent> <CR> <Plug>(IPy-Run)
-    nmap <silent> <c-s> <Plug>(IPy-RunCell)
-    imap <silent> <c-i> <Plug>(IPy-Complete)
-    "nmap <silent> ? <Plug>(IPy-WordObjInfo)
-    nmap <silent> <c-c> <Plug>(IPy-Interrupt)
-    nmap <silent> <c-t> <Plug>(IPy-Terminate)
+    " Required for operations modifying multiple buffers like rename.
+    "
+    " deoplete
+    let g:deoplete#enable_at_startup = 1
+
+    " neovim-lsp
+    set hidden
+    
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+        \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+        \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+        \ 'python': ['/home/qmxue/anaconda3/bin/pyls'],
+        \ }
+    
+    "nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+    "nnoremap <buffer> <silent> <leader>d :call LanguageClient#textDocument_definition()<CR>
+    "nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    "nnoremap <buffer> <silent> <leader>r :call LanguageClient#textDocument_references()<CR>
+    
+    "" vim-lsp
+    "if executable('pyls')
+    "" pip install python-language-server
+    "au User lsp_setup call lsp#register_server({
+    "    \ 'name': 'pyls',
+    "    \ 'cmd': {server_info->['pyls']},
+    "    \ 'whitelist': ['python'],
+    "    \ })
+    "endif 
+
+    "" asyncomplete.vim
+    "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+    "imap <c-o> <Plug>(asyncomplete_force_refresh)
+    "let g:asyncomplete_smart_completion = 1
+    "let g:asyncomplete_auto_popup = 1
+
+    "" nvim-ipy
+    "let g:nvim_ipy_perform_mappings = 0
+    "nmap <leader>i :Ipy<CR>
+    "nmap <silent> <CR> <Plug>(IPy-Run)j0
+    "vmap <silent> <CR> <Plug>(IPy-Run)
+    "nmap <silent> <c-s> <Plug>(IPy-RunCell)
+    ""imap <silent> <c-i> <Plug>(IPy-Complete)
+    ""nmap <silent> ? <Plug>(IPy-WordObjInfo)
+    "nmap <silent> <c-c> <Plug>(IPy-Interrupt)
+    "nmap <silent> <c-t> <Plug>(IPy-Terminate)
 
     " vim-markdown
     let g:vim_markdown_conceal = 0
@@ -183,13 +230,13 @@
     nmap <leader><Tab> :Tabularize /#/l2r1<enter>
     vmap <leader><Tab> :Tabularize /#/l2r1<enter>
 
-    " ale
-    let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
-    let g:ale_change_sign_column_color=1
-    let g:ale_python_flake8_options = '--ignore=E501'
-    let g:ale_python_autopep8_options = '--ignore E501'
-    nmap - <Plug>(ale_previous_wrap)
-    nmap = <Plug>(ale_next_wrap)
+    "" ale
+    "let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
+    "let g:ale_change_sign_column_color=1
+    "let g:ale_python_flake8_options = '--ignore=E501'
+    "let g:ale_python_autopep8_options = '--ignore E501'
+    "nmap - <Plug>(ale_previous_wrap)
+    "nmap = <Plug>(ale_next_wrap)
 
     " mark.vim
     nmap <leader>msan <Plug>MarkSearchAnyNext
@@ -359,21 +406,21 @@
     set showcmd
 " }
 
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
-inoremap <C-e> <End>
-inoremap <C-a> <Home>
-inoremap <C-h> <BS>
-inoremap <C-d> <Del>
-inoremap <C-u> <Right><ESC>d<Home>i
-inoremap <C-k> <Right><ESC>d<End>a
-inoremap <C-t> <Right><ESC>xpi
-inoremap <M-b> <Right><ESC>bi
-inoremap <M-f> <Right><ESC>wi
-inoremap <M-h> <Right><ESC>dbi
-inoremap <M-d> <Right><ESC>dwi
+"inoremap <C-b> <Left>
+"inoremap <C-f> <Right>
+"inoremap <C-n> <Down>
+"inoremap <C-p> <Up>
+"inoremap <C-e> <End>
+"inoremap <C-a> <Home>
+"inoremap <C-h> <BS>
+"inoremap <C-d> <Del>
+"inoremap <C-u> <Right><ESC>d<Home>i
+"inoremap <C-k> <Right><ESC>d<End>a
+"inoremap <C-t> <Right><ESC>xpi
+"inoremap <M-b> <Right><ESC>bi
+"inoremap <M-f> <Right><ESC>wi
+"inoremap <M-h> <Right><ESC>dbi
+"inoremap <M-d> <Right><ESC>dwi
 
 let g:python_location = system('which python')
 let g:python_location = substitute(g:python_location, '\n', '', 'g')
@@ -399,3 +446,7 @@ nnoremap <silent> <leader>rl :so $MYVIMRC<CR>
 nnoremap S i<enter><esc>
 nnoremap <silent> <leader>. :cd %:p:h<CR>|    " switch the directory to the current file's
 tnoremap <Esc><Esc> <C-\><C-n>
+tnoremap <c-j>  <C-\><C-n><c-w>j
+tnoremap <c-h>  <C-\><C-n><c-w>h
+tnoremap <c-k>  <C-\><C-n><c-w>k
+tnoremap <c-l>  <C-\><C-n><c-w>l
