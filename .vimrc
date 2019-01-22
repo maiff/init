@@ -180,7 +180,7 @@
         \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 
     " zenburn
-    colorscheme zenburn
+    colorscheme wombat
     syntax on
     hi Normal  ctermfg=252 ctermbg=none
     hi Visual term=reverse cterm=reverse
