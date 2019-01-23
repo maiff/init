@@ -5,12 +5,17 @@ function! myspacevim#before() abort
   " call SpaceVim#custom#SPCGroupName(['G'], '+TestGroup')
   call SpaceVim#custom#SPC('nore', ['f', 'u'], 'UndotreeToggle', 'undo tree', 1)
   call SpaceVim#custom#SPC('nore', ['l', 't'], 'Tagbar', 'tag bar', 1)
+  call SpaceVim#custom#SPC('nore', ['q', 'w'], 'wqa', 'write and quit all files', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
+  call SpaceVim#custom#SPC('nore', ['l', 'c'], 'CancelDebug', 'write off all hard breakpoints', 1)
+  call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'e ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
 endfunction
 
 function! myspacevim#after() abort
   set ignorecase
   set smartcase
+
+  unmap <c-x>
 
   noremap <f6> :call F6()<CR>
   command! CancelDebug :call CancelDebug()
@@ -43,7 +48,7 @@ function! myspacevim#after() abort
     " python文件取消调试
     if &filetype == 'python'
         let l:winview = winsaveview()
-      exec 'g/\v(^[ \t#]*i?pdb\.|^[ \t#]*import i?pdb$)/d'
+      exec 'g/\Vimport ipdb; ipdb.set_trace()/d'
       exec 'write'
             call winrestview(l:winview)
         endif

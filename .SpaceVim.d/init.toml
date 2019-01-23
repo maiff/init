@@ -26,7 +26,7 @@
     lint_on_the_fly = 1
     lint_on_save = 0
     enable_ale = 1
-    windows_smartclose = ""
+    windows_smartclose = "q"
     bootstrap_before = "myspacevim#before"
     bootstrap_after  = "myspacevim#after"
 
