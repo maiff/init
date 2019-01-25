@@ -9,6 +9,13 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'CancelDebug', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'e ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
+  call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
+  call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
+
+  " switch python interpreter
+  let g:python_location = system('which python')
+  let g:python_location = substitute(g:python_location, '\n', '', 'g')
+  let g:python3_host_prog=g:python_location
 endfunction
 
 function! myspacevim#after() abort
@@ -16,9 +23,10 @@ function! myspacevim#after() abort
   set smartcase
 
   unmap <c-x>
+  nnoremap Y y$
 
   noremap <f6> :call F6()<CR>
-  command! CancelDebug :call CancelDebug()
+  command! CancelDebug :bufdo call CancelDebug()
   command! LatexToURL :call LatexToURL()
   command! CopyMode :call CopyMode()
 
@@ -44,14 +52,23 @@ function! myspacevim#after() abort
     endif
   endfunc
 
+  func! CancelDebugForAllBuffers()
+    let l:winview = winsaveview()
+    let curBuffer = bufnr("%")
+    exec 'bufdo call CancelDebug()'
+    exec 'buffer'.curBuffer
+    call winrestview(l:winview)
+  endfunc
+
   func! CancelDebug()
     " python文件取消调试
     if &filetype == 'python'
-        let l:winview = winsaveview()
-      exec 'g/\Vimport ipdb; ipdb.set_trace()/d'
-      exec 'write'
-            call winrestview(l:winview)
-        endif
+      let isDebugging = search('import ipdb; ipdb.set_trace()', 'n')
+      if isDebugging
+        exec 'g/\Vimport ipdb; ipdb.set_trace()/d'
+        exec 'write'
+      endif
+    endif
   endfunc
 
   func! LatexToURL()
@@ -60,6 +77,17 @@ function! myspacevim#after() abort
       exec 's/+/%2B/g'
     endif
   endfunc
+
+  " ale
+  let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
+  let g:ale_python_flake8_options = '--ignore=E501'
+  let g:ale_python_autopep8_options = '--ignore E501'
+
+  " LeaderGuid
+  nnoremap <silent> [ :<c-u>LeaderGuide '['<CR>
+  vnoremap <silent> [ :<c-u>LeaderGuide '['<CR>
+  nnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
+  vnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
 
 endfunction
 

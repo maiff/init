@@ -40,6 +40,15 @@ auto-completion-tab-key-behavior = "smart"
 name = 'checkers'
 
 [[layers]]
+name = 'sudo'
+
+[[layers]]
+name = 'vim'
+
+[[layers]]
+name = 'git'
+
+[[layers]]
 name = 'shell'
 default_position = 'top'
 default_height = 30
@@ -75,4 +84,8 @@ merged = 0
 
 [[custom_plugins]]
 name = "mbbill/undotree"
+merged = 0
+
+[[custom_plugins]]
+name = "junegunn/fzf.vim"
 merged = 0
