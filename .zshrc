@@ -115,6 +115,7 @@ zle -N zle-line-init
 aida='58.198.177.46'
 aida1702='59.78.194.138'
 titan='58.198.176.85'
+mail='59.78.194.173'
 alias sshg='ssh qmxue@58.198.177.46'
 alias ssh2='ssh qmxue@59.78.194.138'
 alias ssh3='ssh qmxue@58.198.176.85'
