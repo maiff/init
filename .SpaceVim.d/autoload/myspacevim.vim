@@ -11,6 +11,13 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'e ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
   call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
   call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
+  " when using ale, the behavior of next/previous error of SpaceVim is wrong
+  " so I have to turn to the functions of ale
+  if g:spacevim_enable_ale
+    call SpaceVim#custom#SPC('nore', ['e', 'n'], 'ALENext', 'next-error', 1)
+    call SpaceVim#custom#SPC('nore', ['e', 'p'], 'ALEPrevious', 'previous-error', 1)
+    call SpaceVim#custom#SPC('nore', ['e', 'N'], 'ALEPrevious', 'previous-error', 1)
+  endif
 
   " switch python interpreter
   let g:python_location = system('which python')
@@ -24,6 +31,8 @@ function! myspacevim#after() abort
 
   unmap <c-x>
   nnoremap Y y$
+  unmap <
+  unmap >
 
   noremap <f6> :call F6()<CR>
   command! CancelDebug :bufdo call CancelDebug()
