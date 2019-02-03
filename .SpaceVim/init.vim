@@ -7,5 +7,3 @@
 "=============================================================================
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
-
-set timeoutlen=1

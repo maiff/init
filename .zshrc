@@ -58,8 +58,10 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+export FZF_BASE=/home/$USER/.linuxbrew/bin/fzf
 plugins=(
   git
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,25 +110,23 @@ bindkey '^N' history-search-forward
 ## `frozing' tty, so after any command terminal settings will be restored
 #ttyctl -f
 KEYTIMEOUT=1
-zle -N zle-line-init 
-zle -N zle-keymap-select
+zle -N zle-line-init
+#zle -N zle-keymap-select
 
 # type less
-export aida='58.198.177.46'
-export aida1702='59.78.194.138'
-export titan='58.198.176.85'
-export mail='59.78.194.173'
+aida='58.198.177.46'
+aida1702='59.78.194.138'
+titan='58.198.176.85'
 alias sshg='ssh qmxue@58.198.177.46'
-alias sshgr='ssh 2v3518172b.iok.la -p 59417'
 alias ssh2='ssh qmxue@59.78.194.138'
 alias ssh3='ssh qmxue@58.198.176.85'
-alias ssshg='ssh server@58.198.177.46'
 alias sssh2='ssh server@59.78.194.138'
 alias sshw='ssh qmxue@59.78.194.173'
 alias gits='git status'
 alias gitc='git commit -m'
 alias gita='git add --all'
-#alias v='~/.linuxbrew/bin/vim'
+alias vim='nvim'
+alias em='emacs'
 alias gpus='watch --color gpustat --color'
 alias gpu0='CUDA_VISIBLE_DEVICES=0'
 alias gpu1='CUDA_VISIBLE_DEVICES=1'
@@ -137,16 +137,12 @@ alias sa='source activate'
 alias rl='source ~/.zshrc'
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 alias xdg='xdg-open'
+alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
+alias cl='clear'
+
+alias du='ncdu'
+alias top='glances'
 
 eval $(thefuck --alias)
 
-export PATH="/home/$USER/anaconda3/bin:$PATH"
-export PATH="/home/$USER/.linuxbrew/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH=$PATH:~/usr/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
-export C_INCLUDE_PATH=$C_INCLUDE_PATH:~/usr/include
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/usr/include
-export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-
-fortune | cowsay
+source ~/.zshrc.local

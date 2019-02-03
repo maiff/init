@@ -27,16 +27,23 @@ function! myspacevim#before() abort
   let g:python_location = system('which python')
   let g:python_location = substitute(g:python_location, '\n', '', 'g')
   let g:python3_host_prog=g:python_location
+
+  " clever f configuration
+  let g:clever_f_across_no_line = 1
+  let g:clever_f_smart_case = 1
+  map ; <Plug>(clever-f-repeat-forward)
+  map \ <Plug>(clever-f-repeat-back)
 endfunction
 
 function! myspacevim#after() abort
   set ignorecase
   set smartcase
+  set lazyredraw
+  set noswapfile
 
-  nnoremap ; :
-  vnoremap ; :
   nnoremap Y y$
   nnoremap S i<enter><esc>
+  nnoremap <enter> za
   if has('nvim')
     cmap <M-b> <S-Left>
     cmap <M-f> <S-Right>

@@ -32,7 +32,8 @@ values."
    dotspacemacs-configuration-layers
    '(
      javascript
-     python
+     lsp
+     (python :variables python-backend 'lsp)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -141,12 +142,12 @@ values."
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
-   dotspacemacs-leader-key ","
+   dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
    ;; (default "SPC")
-   dotspacemacs-emacs-command-key ","
+   dotspacemacs-emacs-command-key "SPC"
    ;; The key used for Vim Ex commands (default ":")
-   dotspacemacs-ex-command-key "SPC"
+   dotspacemacs-ex-command-key ":"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -317,10 +318,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (add-to-list 'python-shell-extra-pythonpaths "/home/qmxue/anaconda3/pkgs")
+  (add-to-list 'python-shell-extra-pythonpaths "/home/qmxue/anaconda3/lib/python3.6/site-packages")
   (spacemacs/toggle-indent-guide)
-  (spacemacs/toggle-truncate-lines-on)
-  ;; Visual line navigation for textual modes
-  (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+  (spacemacs/toggle-truncate-lines-off)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

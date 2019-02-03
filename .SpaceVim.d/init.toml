@@ -27,6 +27,9 @@
     lint_on_save = 0
     enable_ale = 1
     windows_smartclose = "q"
+    info_symbol = 'i'
+    terminal_cursor_shape = 1
+    statusline_separator = "arrow"
     bootstrap_before = "myspacevim#before"
     bootstrap_after  = "myspacevim#after"
 
@@ -82,10 +85,14 @@ merged = 0
 name = "jeetsukumaran/vim-pythonsense"
 merged = 0
 
-[[custom_plugins]]
-name = "mbbill/undotree"
-merged = 0
+# [[custom_plugins]]
+# name = "mbbill/undotree"
+# merged = 0
 
 [[custom_plugins]]
 name = "junegunn/fzf.vim"
 merged = 0
+
+# [[custom_plugins]]
+# name = "luochen1990/rainbow"
+# merged = 0
