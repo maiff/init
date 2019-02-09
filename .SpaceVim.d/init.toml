@@ -93,6 +93,10 @@ merged = 0
 name = "junegunn/fzf.vim"
 merged = 0
 
+[[custom_plugins]]
+name = "jalvesaq/vimcmdline"
+merged = 0
+
 # [[custom_plugins]]
 # name = "luochen1990/rainbow"
 # merged = 0
