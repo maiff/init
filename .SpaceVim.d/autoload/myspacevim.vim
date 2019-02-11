@@ -77,6 +77,9 @@ function! myspacevim#after() abort
     " enable true color
     set termguicolors
   endif
+  if has('nvim')
+    set pumblend=20
+  endif
 
   nnoremap Y y$
   nnoremap S i<enter><esc>
@@ -96,7 +99,6 @@ function! myspacevim#after() abort
   unmap <
   unmap >
 
-  Limelight
   RainbowParentheses
 
   noremap <f6> :call F6()<CR>
