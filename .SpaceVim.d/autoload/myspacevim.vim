@@ -4,14 +4,17 @@ function! myspacevim#before() abort
   let g:mapleader  = ','
   let g:maplocalleader  = ','
 
+  " call SpaceVim#mapping#space#langSPC('nmap', ['l','i'],
+  "       \ '<plug>(vimtex-info)',
+  "       \ 'vimtex-info', 0)
   " call SpaceVim#custom#SPCGroupName(['G'], '+TestGroup')
   call SpaceVim#custom#SPC('nore', ['f', 'u'], 'MundoToggle', 'undo tree', 1)
+  call SpaceVim#custom#SPC('nore', ['b', 'C'], 'cd %:p:h', 'set path to current directory', 1)
   call SpaceVim#custom#SPC('nore', ['l', 't'], 'Tagbar', 'tag bar', 1)
   call SpaceVim#custom#SPC('nore', ['q', 'w'], 'wqa', 'write and quit all files', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'tabnew ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
-  call SpaceVim#custom#SPC('nore', ['l', 's', 'i'], 'call VimCmdLineStartApp()', 'start REPL process', 1)
   call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
   call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
@@ -65,6 +68,15 @@ function! myspacevim#after() abort
   set smartcase
   set lazyredraw
   set noswapfile
+  set showcmd
+  if has("termguicolors")
+    " fix bug for vim
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+
+    " enable true color
+    set termguicolors
+  endif
 
   nnoremap Y y$
   nnoremap S i<enter><esc>
@@ -80,6 +92,7 @@ function! myspacevim#after() abort
   tnoremap <C-l> <C-\><C-N>:<C-U>wincmd l<CR>
 
   unmap <c-x>
+  unmap <tab>
   unmap <
   unmap >
 
