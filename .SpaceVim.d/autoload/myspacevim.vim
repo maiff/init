@@ -69,6 +69,7 @@ function! myspacevim#after() abort
   set lazyredraw
   set noswapfile
   set showcmd
+  set foldlevel=2
   if has("termguicolors")
     " fix bug for vim
     set t_8f=[38;2;%lu;%lu;%lum
@@ -170,6 +171,5 @@ function! myspacevim#after() abort
   " nnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
   " vnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
   "
-  set foldlevel=2
 endfunction
 

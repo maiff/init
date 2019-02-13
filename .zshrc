@@ -7,21 +7,21 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="random"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+ZSH_THEME_RANDOM_CANDIDATES=("agnoster" "amuse" "bira" "candy" "flazz" "ys")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -71,11 +71,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -89,39 +89,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# export ALL_PROXY=socks5://127.0.0.1:1080
-
-# # vi style incremental search
-# bindkey -v
-#
-# bindkey '^R' history-incremental-search-backward
-# bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward
-#
-## zsh
-#alias vim="stty stop '' -ixoff ; vim"
-## `frozing' tty, so after any command terminal settings will be restored
-#ttyctl -f
-KEYTIMEOUT=1
-zle -N zle-line-init
-#zle -N zle-keymap-select
-
-# type less
-aida='58.198.177.46'
-aida1702='59.78.194.138'
-titan='58.198.176.85'
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 alias sshg='ssh qmxue@58.198.177.46'
 alias ssh2='ssh qmxue@59.78.194.138'
 alias ssh3='ssh qmxue@58.198.176.85'
 alias sssh2='ssh server@59.78.194.138'
 alias sshw='ssh qmxue@59.78.194.173'
-alias gits='git status'
-alias gitc='git commit -m'
-alias gita='git add --all'
 alias vim='nvim'
 alias em='emacs'
 alias gpus='watch --color gpustat --color'
@@ -137,8 +111,29 @@ alias xdg='xdg-open'
 alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
 alias cl='clear'
 
-alias du='ncdu'
-alias top='glances'
+
+# export ALL_PROXY=socks5://127.0.0.1:1080
+
+# # vi style incremental search
+# bindkey -v
+#
+# bindkey '^R' history-incremental-search-backward
+# bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+
+# ## zsh
+# #alias vim="stty stop '' -ixoff ; vim"
+# ## `frozing' tty, so after any command terminal settings will be restored
+# #ttyctl -f
+# KEYTIMEOUT=1
+# zle -N zle-line-init
+# #zle -N zle-keymap-select
+
+# type less
+aida='58.198.177.46'
+aida1702='59.78.194.138'
+titan='58.198.176.85'
 
 eval $(thefuck --alias)
 # autojump
