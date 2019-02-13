@@ -170,5 +170,6 @@ function! myspacevim#after() abort
   " nnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
   " vnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
   "
+  set foldlevel=2
 endfunction
 

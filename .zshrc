@@ -59,10 +59,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 export FZF_BASE=/home/$USER/.linuxbrew/bin/fzf
-plugins=(
-  git
-  fzf
-)
+plugins=(git git-open fzf zsh-syntax-highlighting tmux vi-mode extract rand-quote themes per-directory-history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,14 +94,14 @@ source $ZSH/oh-my-zsh.sh
 
 # export ALL_PROXY=socks5://127.0.0.1:1080
 
-# vi style incremental search
-bindkey -v
-
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
+# # vi style incremental search
+# bindkey -v
+#
+# bindkey '^R' history-incremental-search-backward
+# bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
-
+#
 ## zsh
 #alias vim="stty stop '' -ixoff ; vim"
 ## `frozing' tty, so after any command terminal settings will be restored
@@ -144,5 +141,7 @@ alias du='ncdu'
 alias top='glances'
 
 eval $(thefuck --alias)
+# autojump
+[ -f /home/qmxue/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/qmxue/.linuxbrew/etc/profile.d/autojump.sh
 
 source ~/.zshrc.local
