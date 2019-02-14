@@ -86,6 +86,8 @@ function! myspacevim#after() abort
   nnoremap S i<enter><esc>
   nnoremap <enter> za
   nnoremap <bs> "_
+  nnoremap zl 10zl
+  nnoremap zh 10zh
   if has('nvim')
     cmap <M-b> <S-Left>
     cmap <M-f> <S-Right>

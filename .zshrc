@@ -59,6 +59,12 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 export FZF_BASE=/home/$USER/.linuxbrew/bin/fzf
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='**'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
 plugins=(git git-open fzf zsh-syntax-highlighting tmux vi-mode extract rand-quote themes per-directory-history)
 
 source $ZSH/oh-my-zsh.sh
@@ -110,6 +116,7 @@ alias net='curl --silent -d "action=login&username=51184501170&password=xqm89922
 alias xdg='xdg-open'
 alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
 alias cl='clear'
+alias vimn='vim -u NONE'
 
 
 # export ALL_PROXY=socks5://127.0.0.1:1080

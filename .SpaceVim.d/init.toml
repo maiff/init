@@ -111,6 +111,14 @@ merged = 0
 name = "jacoborus/tender.vim"
 merged = 0
 
+[[custom_plugins]]
+name = "tpope/vim-obsession"
+merged = 0
+
+[[custom_plugins]]
+name = "tpope/vim-capslock"
+merged = 0
+
 # [[custom_plugins]]
 # name = "luochen1990/rainbow"
 # merged = 0
