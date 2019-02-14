@@ -1,4 +1,4 @@
 patch:
-  "schema_list/@before 0": {schema: double_pinyin}
+  "schema_list/@before 0": {schema: zrm_pinyin}
   "key_binder/bindings/@after last": { when: composing, accept: Control+w, send: Escape }
   "key_binder/bindings/@after last": { when: composing, accept: Control+c, send: Escape }
