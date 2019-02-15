@@ -3,7 +3,26 @@ patch:
   "key_binder/bindings":
     - { when: composing, accept: Control+w, send: Escape }
     - { when: composing, accept: Control+c, send: Escape }
-    - { when: has_menu, accept: less, send: Page_up }
-    - { when: has_menu, accept: greater, send: Page_down }
-    - { when: has_menu, accept: comma, send: 2 }
-    - { when: has_menu, accept: period, send: 3 }
+    - { when: has_menu, accept: comma, send: Page_Up }
+    - { when: has_menu, accept: period, send: Page_Down }
+    - { when: always, accept: Control+Shift+space, select: .next }
+    - { when: always, accept: Shift+space, toggle: ascii_mode }
+    - { when: always, accept: Control+comma, toggle: full_shape }
+    - { when: always, accept: Control+period, toggle: ascii_punct }
+    - { when: always, accept: Control+slash, toggle: simplification }
+    - { when: always, accept: Control+backslash, toggle: extended_charset }
+    - { when: composing, accept: Control+p, send: Up }
+    - { when: composing, accept: Control+n, send: Down }
+    - { when: composing, accept: Control+b, send: Left }
+    - { when: composing, accept: Control+f, send: Right }
+    - { when: composing, accept: Control+a, send: Home }
+    - { when: composing, accept: Control+e, send: End }
+    - { when: composing, accept: Control+d, send: Delete }
+    - { when: composing, accept: Control+k, send: Shift+Delete }
+    - { when: composing, accept: Control+h, send: BackSpace }
+    - { when: composing, accept: Control+g, send: Escape }
+    - { when: composing, accept: Control+bracketleft, send: Escape }
+    - { when: composing, accept: Alt+v, send: Page_Up }
+    - { when: composing, accept: Control+v, send: Page_Down }
+
+  "menu/page_size": 3
