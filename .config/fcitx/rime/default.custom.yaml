@@ -1,4 +1,9 @@
 patch:
   "schema_list/@before 0": {schema: zrm_pinyin}
-  "key_binder/bindings/@after last": { when: composing, accept: Control+w, send: Escape }
-  "key_binder/bindings/@after last": { when: composing, accept: Control+c, send: Escape }
+  "key_binder/bindings":
+    - { when: composing, accept: Control+w, send: Escape }
+    - { when: composing, accept: Control+c, send: Escape }
+    - { when: has_menu, accept: less, send: Page_up }
+    - { when: has_menu, accept: greater, send: Page_down }
+    - { when: has_menu, accept: comma, send: 2 }
+    - { when: has_menu, accept: period, send: 3 }
