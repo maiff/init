@@ -17,6 +17,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'tabnew ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
   call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
   call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
+  call SpaceVim#custom#SPC('nore', ['t', 'p'], 'call CopyMode()', 'toggle copy mode', 1)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
   " so I have to turn to the functions of ale
   if g:spacevim_enable_ale
@@ -107,7 +108,6 @@ function! myspacevim#after() abort
   noremap <f6> :call F6()<CR>
   " command! CancelDebug :bufdo call CancelDebug()
   command! LatexToURL :call LatexToURL()
-  command! CopyMode :call CopyMode()
 
   func! F6()
     " python文件设置断点
@@ -161,6 +161,22 @@ function! myspacevim#after() abort
       exec 's/+/%2B/g'
     endif
   endfunc
+
+	func! CopyMode()
+    if &paste
+      set nopaste
+			set nowrap
+			set number
+			set relativenumber
+			exec 'IndentLinesEnable'
+		else
+			set paste
+			set wrap
+			set nonumber
+			set norelativenumber
+			exec 'IndentLinesDisable'
+		endif
+    endfunc
 
   " ale
   let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
