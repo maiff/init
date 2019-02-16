@@ -3,6 +3,7 @@ patch:
   "key_binder/bindings":
     - { when: composing, accept: Control+w, send: Escape }
     - { when: composing, accept: Control+c, send: Escape }
+    - { when: composing, accept: BackSpace, send: Escape }
     - { when: has_menu, accept: comma, send: Page_Up }
     - { when: has_menu, accept: period, send: Page_Down }
     - { when: always, accept: Control+Shift+space, select: .next }
