@@ -58,7 +58,11 @@ disable=line-too-long,
         invalid-name,
         missing-docstring,
         too-many-locals,
-        too-many-instance-attributes
+        too-many-instance-attributes,
+        too-many-arguments,
+        attribute-defined-outside-init,
+        unbalanced-tuple-unpacking
+
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

@@ -24,14 +24,15 @@
     enable_tabline_filetype_icon = true
     enable_statusline_display_mode = false
     lint_on_the_fly = 1
-    lint_on_save = 0
-    enable_ale = 1
+    lint_on_save = 1
+    # enable_ale = 1
     windows_smartclose = "q"
     info_symbol = 'i'
     terminal_cursor_shape = 1
     statusline_separator = "arrow"
     bootstrap_before = "myspacevim#before"
     bootstrap_after  = "myspacevim#after"
+    project_rooter_automatically = 0
 
 # Enable autocomplete layer
 [[layers]]
@@ -41,6 +42,13 @@ auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
 name = 'checkers'
+show_cursor_error = false
+
+# [[layers]]
+#   name = 'lsp'
+#   filetypes = [
+#     "python"
+#   ]
 
 [[layers]]
 name = 'sudo'
@@ -62,6 +70,7 @@ name = 'lang#python'
 [[layers]]
 name = 'lang#c'
   clang_executable = "/usr/bin/clang-6.0"
+  libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
   clang_flag = ["-lm"]
   [layer.clang_std]
     c = "c11"
@@ -92,6 +101,10 @@ name = "tmhedberg/SimpylFold"
 merged = 0
 
 [[custom_plugins]]
+name = "vim-scripts/LargeFile"
+merged = 0
+
+[[custom_plugins]]
 name = "jeetsukumaran/vim-pythonsense"
 merged = 0
 
@@ -117,6 +130,10 @@ merged = 0
 
 [[custom_plugins]]
 name = "tpope/vim-capslock"
+merged = 0
+
+[[custom_plugins]]
+name = "vim-scripts/VimIM"
 merged = 0
 
 # [[custom_plugins]]

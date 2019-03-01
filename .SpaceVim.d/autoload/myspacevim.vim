@@ -1,4 +1,23 @@
 function! myspacevim#before() abort
+    " file is large from 1MB
+  let g:LargeFile = 1024 * 1024 * 1
+  augroup LargeFile
+  autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+  augroup END
+
+  function LargeFile()
+    " no syntax highlighting etc
+    set eventignore+=FileType
+    " save memory when other file is viewed
+    setlocal bufhidden=unload
+    " is read-only (write with :w new_filename)
+    setlocal buftype=nowrite
+    " no undo possible
+    setlocal undolevels=-1
+    " display message
+    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 ) . " MB, so some options are changed (see .vimrc for details)."
+  endfunction
+
   let g:spacevim_lint_on_save = 0
   let g:spacevim_lint_on_the_fly = 1
   let g:mapleader  = ','
@@ -9,9 +28,10 @@ function! myspacevim#before() abort
   "       \ 'vimtex-info', 0)
   " call SpaceVim#custom#SPCGroupName(['G'], '+TestGroup')
   call SpaceVim#custom#SPC('nore', ['f', 'u'], 'MundoToggle', 'undo tree', 1)
-  call SpaceVim#custom#SPC('nore', ['b', 'C'], 'cd %:p:h', 'set path to current directory', 1)
+  call SpaceVim#custom#SPC('nore', ['b', 'C'], 'cd %:p:h', 'set path to the directory of current buffer', 1)
   call SpaceVim#custom#SPC('nore', ['l', 't'], 'Tagbar', 'tag bar', 1)
   call SpaceVim#custom#SPC('nore', ['q', 'w'], 'wqa', 'write and quit all files', 1)
+  call SpaceVim#custom#SPC('nore', ['f', 'w'], 'w', 'write file', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'tabnew ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
@@ -39,6 +59,9 @@ function! myspacevim#before() abort
   let g:clever_f_smart_case = 1
   map ; <Plug>(clever-f-repeat-forward)
   map \ <Plug>(clever-f-repeat-back)
+
+  " " indenteLine
+  " let g:indentLine_char_list = ['1', '2', '3', '4']
 
   " vimcmdline mappings
   let g:cmdline_map_start          = '<LocalLeader>s'
@@ -85,10 +108,11 @@ function! myspacevim#after() abort
 
   nnoremap Y y$
   nnoremap S i<enter><esc>
-  nnoremap <enter> za
   nnoremap <bs> "_
   nnoremap zl 10zl
   nnoremap zh 10zh
+  nnoremap Q q
+  inoremap <c-d> <del>
   if has('nvim')
     cmap <M-b> <S-Left>
     cmap <M-f> <S-Right>
@@ -182,6 +206,15 @@ function! myspacevim#after() abort
   let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
   let g:ale_python_flake8_options = '--ignore=E501'
   let g:ale_python_autopep8_options = '--ignore E501'
+
+  " neomake
+  let g:neomake_open_list = 0
+  call neomake#configure#automake('n')
+  let g:neomake_python_pycodestyle_maker = {
+      \ 'exe': 'pycodestyle',
+      \ 'args': ['--ignore=E501'],
+      \ 'errorformat': '%f:%l:%c: %m',
+      \ }
 
   " " LeaderGuid
   " nnoremap <silent> [ :<c-u>LeaderGuide '['<CR>
