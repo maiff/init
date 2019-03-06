@@ -101,16 +101,24 @@ name = "tmhedberg/SimpylFold"
 merged = 0
 
 [[custom_plugins]]
+name = "bronson/vim-trailing-whitespace"
+merged = 0
+
+[[custom_plugins]]
+name = "yuttie/comfortable-motion.vim"
+merged = 0
+
+[[custom_plugins]]
+name = "mhinz/vim-signify"
+merged = 0
+
+[[custom_plugins]]
 name = "vim-scripts/LargeFile"
 merged = 0
 
 [[custom_plugins]]
 name = "jeetsukumaran/vim-pythonsense"
 merged = 0
-
-# [[custom_plugins]]
-# name = "mbbill/undotree"
-# merged = 0
 
 [[custom_plugins]]
 name = "junegunn/fzf.vim"
@@ -139,3 +147,8 @@ merged = 0
 # [[custom_plugins]]
 # name = "luochen1990/rainbow"
 # merged = 0
+
+# [[custom_plugins]]
+# name = "mbbill/undotree"
+# merged = 0
+

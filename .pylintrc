@@ -61,7 +61,8 @@ disable=line-too-long,
         too-many-instance-attributes,
         too-many-arguments,
         attribute-defined-outside-init,
-        unbalanced-tuple-unpacking
+        unbalanced-tuple-unpacking,
+        too-many-statements
 
 
 # Enable the message, report, category or checker with the given id(s). You can
