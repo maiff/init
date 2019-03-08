@@ -147,3 +147,4 @@ eval $(thefuck --alias)
 [ -f /home/qmxue/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/qmxue/.linuxbrew/etc/profile.d/autojump.sh
 
 source ~/.zshrc.local
+source /home/qmxue/HUAPA/summary/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

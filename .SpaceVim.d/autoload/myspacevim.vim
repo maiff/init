@@ -174,6 +174,8 @@ function! myspacevim#after() abort
       let isDebugging = search('import ipdb; ipdb.set_trace()', 'n')
       if isDebugging
         exec 'g/\Vimport ipdb; ipdb.set_trace()/d'
+        exec 'g/\Vimport ipdb/d'
+        exec 'g/\Vipdb.set_trace()/d'
         exec 'write'
       endif
     endif
@@ -215,6 +217,11 @@ function! myspacevim#after() abort
       \ 'args': ['--ignore=E501'],
       \ 'errorformat': '%f:%l:%c: %m',
       \ }
+
+  " " vim-youdao-translator
+  " vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+  " nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+  " noremap <leader>yd :<C-u>Yde<CR>
 
   " " LeaderGuid
   " nnoremap <silent> [ :<c-u>LeaderGuide '['<CR>

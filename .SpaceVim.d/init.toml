@@ -140,9 +140,13 @@ merged = 0
 name = "tpope/vim-capslock"
 merged = 0
 
-[[custom_plugins]]
-name = "vim-scripts/VimIM"
-merged = 0
+# [[custom_plugins]]
+# name = "vim-scripts/VimIM"
+# merged = 0
+
+# [[custom_plugins]]
+# name = "ianva/vim-youdao-translater"
+# merged = 0
 
 # [[custom_plugins]]
 # name = "luochen1990/rainbow"
