@@ -65,7 +65,7 @@ export FZF_COMPLETION_TRIGGER='**'
 # Options to fzf command
 export FZF_COMPLETION_OPTS='+c -x'
 
-plugins=(git git-open fzf zsh-syntax-highlighting tmux vi-mode extract rand-quote themes per-directory-history)
+plugins=(git git-open fzf zsh-syntax-highlighting tmux vi-mode extract rand-quote themes per-directory-history zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -143,8 +143,13 @@ aida1702='59.78.194.138'
 titan='58.198.176.85'
 
 eval $(thefuck --alias)
+
 # autojump
 [ -f /home/qmxue/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/qmxue/.linuxbrew/etc/profile.d/autojump.sh
 
+# autosuggest
+bindkey '^Y' autosuggest-execute
+bindkey '^U' autosuggest-clear
+bindkey '^T' autosuggest-accept
+
 source ~/.zshrc.local
-source /home/qmxue/HUAPA/summary/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -38,6 +38,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
   call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'p'], 'call CopyMode()', 'toggle copy mode', 1)
+  call SpaceVim#custom#SPC('nore', ['t', 'r'], 'call RelativeNumber()', 'toggle relative number', 1)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
   " so I have to turn to the functions of ale
   if g:spacevim_enable_ale
@@ -202,7 +203,17 @@ function! myspacevim#after() abort
 			set norelativenumber
 			exec 'IndentLinesDisable'
 		endif
-    endfunc
+  endfunc
+
+  fun! RelativeNumber()
+    if &relativenumber
+      set norelativenumber
+      RltvNmbr
+    else
+      set relativenumber
+      RltvNmbr!
+    endif
+  endfunc
 
   " ale
   let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
@@ -217,6 +228,10 @@ function! myspacevim#after() abort
       \ 'args': ['--ignore=E501'],
       \ 'errorformat': '%f:%l:%c: %m',
       \ }
+
+  " comfortable motion
+  let g:comfortable_motion_scroll_down_key = "\<C-d>"
+  let g:comfortable_motion_scroll_up_key = "\<C-u>"
 
   " " vim-youdao-translator
   " vnoremap <silent> <C-T> :<C-u>Ydv<CR>

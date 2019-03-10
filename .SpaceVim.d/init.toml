@@ -100,9 +100,9 @@ name = 'tools'
 name = "tmhedberg/SimpylFold"
 merged = 0
 
-[[custom_plugins]]
-name = "bronson/vim-trailing-whitespace"
-merged = 0
+# [[custom_plugins]]
+# name = "bronson/vim-trailing-whitespace"
+# merged = 0
 
 [[custom_plugins]]
 name = "yuttie/comfortable-motion.vim"
@@ -138,6 +138,10 @@ merged = 0
 
 [[custom_plugins]]
 name = "tpope/vim-capslock"
+merged = 0
+
+[[custom_plugins]]
+name = "vim-scripts/RltvNmbr.vim"
 merged = 0
 
 # [[custom_plugins]]
