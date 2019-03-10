@@ -1,14 +1,14 @@
 {
-    "server": "61.219.127.215 ",
-    "local_address": "127.0.0.1",
-    "local_port": 1024,
-    "timeout": 300,
-    "workers": 1,
-    "server_port": 9230,
-    "password": "aPRtfw",
-    "method": "aes-256-cfb",
-    "obfs": "plain",
-    "obfs_param": "",
-    "protocol": "origin",
-    "protocol_param": ""
+"server": "127.0.0.1",
+"local_address": "127.0.0.1",
+"local_port": 1024,
+"timeout": 300,
+"workers": 1,
+"server_port": 9230,
+"password": "aPRtfw",
+"method": "aes-256-cfb",
+"obfs": "plain",
+"obfs_param": "",
+"protocol": "origin",
+"protocol_param": ""
 }

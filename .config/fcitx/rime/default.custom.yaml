@@ -1,5 +1,11 @@
 patch:
-  "schema_list/@before 0": {schema: zrm_pinyin}
+  "schema_list":
+    - schema: zrm2000
+    - schema: luna_pinyin
+    - schema: cangjie5
+    - schema: luna_pinyin_fluency
+    - schema: luna_pinyin_simp
+    - schema: luna_pinyin_tw
   "key_binder/bindings":
     - { when: composing, accept: Control+w, send: Escape }
     - { when: composing, accept: Control+c, send: Escape }
