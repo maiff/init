@@ -33,6 +33,7 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after  = "myspacevim#after"
     project_rooter_automatically = 0
+    filemanager = "defx"
 
 # Enable autocomplete layer
 [[layers]]
@@ -43,12 +44,6 @@ auto-completion-tab-key-behavior = "smart"
 [[layers]]
 name = 'checkers'
 show_cursor_error = false
-
-# [[layers]]
-#   name = 'lsp'
-#   filetypes = [
-#     "python"
-#   ]
 
 [[layers]]
 name = 'sudo'
@@ -62,7 +57,7 @@ name = 'git'
 [[layers]]
 name = 'shell'
 default_position = 'top'
-default_height = 30
+default_height = 3
 
 [[layers]]
 name = 'lang#python'
@@ -96,13 +91,21 @@ name = 'chat'
 [[layers]]
 name = 'tools'
 
+#=============================================================================
+# my own vim plugins
+#=============================================================================
+
+[[custom_plugins]]
+name = "unblevable/quick-scope"
+merged = 0
+
+[[custom_plugins]]
+name = "matze/vim-move"
+merged = 0
+
 [[custom_plugins]]
 name = "tmhedberg/SimpylFold"
 merged = 0
-
-# [[custom_plugins]]
-# name = "bronson/vim-trailing-whitespace"
-# merged = 0
 
 [[custom_plugins]]
 name = "yuttie/comfortable-motion.vim"
@@ -114,6 +117,10 @@ merged = 0
 
 [[custom_plugins]]
 name = "vim-scripts/LargeFile"
+merged = 0
+
+[[custom_plugins]]
+name = "kristijanhusak/defx-icons"
 merged = 0
 
 [[custom_plugins]]
@@ -143,20 +150,3 @@ merged = 0
 [[custom_plugins]]
 name = "vim-scripts/RltvNmbr.vim"
 merged = 0
-
-# [[custom_plugins]]
-# name = "vim-scripts/VimIM"
-# merged = 0
-
-# [[custom_plugins]]
-# name = "ianva/vim-youdao-translater"
-# merged = 0
-
-# [[custom_plugins]]
-# name = "luochen1990/rainbow"
-# merged = 0
-
-# [[custom_plugins]]
-# name = "mbbill/undotree"
-# merged = 0
-

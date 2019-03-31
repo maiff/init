@@ -172,7 +172,7 @@ function! myspacevim#after() abort
   func! CancelDebug()
     " python文件取消调试
     if &filetype == 'python'
-      let isDebugging = search('import ipdb; ipdb.set_trace()', 'n')
+      let isDebugging = search('import ipdb', 'n')
       if isDebugging
         exec 'g/\Vimport ipdb; ipdb.set_trace()/d'
         exec 'g/\Vimport ipdb/d'
@@ -196,12 +196,14 @@ function! myspacevim#after() abort
 			set number
 			set relativenumber
 			exec 'IndentLinesEnable'
+      exec 'SignifyEnable'
 		else
 			set paste
 			set wrap
 			set nonumber
 			set norelativenumber
 			exec 'IndentLinesDisable'
+      exec 'SignifyDisable'
 		endif
   endfunc
 
