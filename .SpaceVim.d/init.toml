@@ -68,6 +68,9 @@ default_height = 30
 name = 'lang#python'
 
 [[layers]]
+  name = "lang#markdown"
+
+[[layers]]
 name = 'lang#c'
   clang_executable = "/usr/bin/clang-6.0"
   libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
@@ -98,6 +101,14 @@ name = 'tools'
 
 [[custom_plugins]]
 name = "tmhedberg/SimpylFold"
+merged = 0
+
+[[custom_plugins]]
+name = "blueyed/vim-diminactive"
+merged = 0
+
+[[custom_plugins]]
+name = "matze/vim-move"
 merged = 0
 
 # [[custom_plugins]]

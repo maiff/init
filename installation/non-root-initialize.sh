@@ -41,7 +41,8 @@ pip install tensorflow-gpu
 brew install glances
 brew install ranger
 brew install ncdu
-brew install vim
+brew install neovim
+brew install autojump
 
 source ./nvim.sh
 source ./tmux.sh
