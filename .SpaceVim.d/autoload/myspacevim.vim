@@ -39,6 +39,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'p'], 'call CopyMode()', 'toggle copy mode', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'r'], 'call RelativeNumber()', 'toggle relative number', 1)
+  call SpaceVim#custom#SPC('nore', ['r', 'y'], 'YRShow', 'toggle relative number', 1)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
   " so I have to turn to the functions of ale
   if g:spacevim_enable_ale

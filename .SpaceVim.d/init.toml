@@ -96,6 +96,10 @@ name = 'tools'
 #=============================================================================
 
 [[custom_plugins]]
+name = "vim-scripts/YankRing.vim"
+merged = 0
+
+[[custom_plugins]]
 name = "unblevable/quick-scope"
 merged = 0
 
