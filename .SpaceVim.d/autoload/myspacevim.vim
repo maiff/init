@@ -29,17 +29,19 @@ function! myspacevim#before() abort
   " call SpaceVim#custom#SPCGroupName(['G'], '+TestGroup')
   call SpaceVim#custom#SPC('nore', ['f', 'u'], 'MundoToggle', 'undo tree', 1)
   call SpaceVim#custom#SPC('nore', ['b', 'C'], 'cd %:p:h', 'set path to the directory of current buffer', 1)
-  call SpaceVim#custom#SPC('nore', ['l', 't'], 'Tagbar', 'tag bar', 1)
   call SpaceVim#custom#SPC('nore', ['q', 'w'], 'wqa', 'write and quit all files', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'w'], 'w', 'write file', 1)
-  call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
-  call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'tabnew ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
-  call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
-  call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'p'], 'call CopyMode()', 'toggle copy mode', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'r'], 'call RelativeNumber()', 'toggle relative number', 1)
-  call SpaceVim#custom#SPC('nore', ['r', 'y'], 'YRShow', 'toggle relative number', 1)
+  call SpaceVim#custom#SPC('nore', ['r', 'y'], 'YRShow', 'Show Yank Ring', 1)
+  call SpaceVim#custom#SPC('nore', ['r', 'l'], 'call myspacevim#after()', 'Reload myspacevim.vim', 1)
+  call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
+  call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
+  call SpaceVim#custom#SPC('nore', ['l', 't'], 'Tagbar', 'tag bar', 1)
+  call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
+  call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
+  call SpaceVim#custom#SPC('nore', ['l', 'm'], 'call jedi#rename()', 'refactor current variable', 1)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
   " so I have to turn to the functions of ale
   if g:spacevim_enable_ale
@@ -50,6 +52,9 @@ function! myspacevim#before() abort
   " formatting code will mess up the folding, so it's help to rearrange it
   call SpaceVim#custom#SPC('nore', ['b', 'f'], 'call Format()', 'format-code-and-rearrange-folding', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'L'], 'Limelight!!', 'toggle lime light', 1)
+  " quickhl
+  call SpaceVim#custom#SPC('nmap', ['s', 'm'], '<Plug>(quickhl-manual-this-whole-word)', 'highlight current word', 0)
+  call SpaceVim#custom#SPC('vmap', ['s', 'm'], '<Plug>(quickhl-manual-this)', 'highlight current word', 0)
 
   " switch python interpreter
   let g:python_location = system('which python')
@@ -60,7 +65,7 @@ function! myspacevim#before() abort
   let g:clever_f_across_no_line = 1
   let g:clever_f_smart_case = 1
   map ; <Plug>(clever-f-repeat-forward)
-  map \ <Plug>(clever-f-repeat-back)
+  map <Bslash> <Plug>(clever-f-repeat-back)
 
   " " indenteLine
   " let g:indentLine_char_list = ['1', '2', '3', '4']
@@ -83,10 +88,10 @@ function! myspacevim#before() abort
   let g:cmdline_outhl       = 1      " Syntax highlight the output
   let g:cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
   " cmdline apps
-  let g:cmdline_app           = {}
-  let g:cmdline_app['python'] = 'ipython'
+  let g:cmdline_app            = {}
+  let g:cmdline_app['python']  = 'ipython'
   let g:cmdline_app['python3'] = 'ipython'
-  let g:cmdline_app['sh']     = 'zsh'
+  let g:cmdline_app['sh']      = 'zsh'
 endfunction
 
 function! myspacevim#after() abort
@@ -115,6 +120,8 @@ function! myspacevim#after() abort
   nnoremap zh 10zh
   nnoremap Q q
   inoremap <c-d> <del>
+  nnoremap * *``
+  nnoremap # #N
   if has('nvim')
     cmap <M-b> <S-Left>
     cmap <M-f> <S-Right>
@@ -129,6 +136,7 @@ function! myspacevim#after() abort
   unmap <
   unmap >
 
+  " Toggle rainbow parentheses
   RainbowParentheses
 
   noremap <f6> :call F6()<CR>
@@ -246,6 +254,7 @@ function! myspacevim#after() abort
   " vnoremap <silent> [ :<c-u>LeaderGuide '['<CR>
   " nnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
   " vnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
-  "
+
+  Obsession .obsession.vim
 endfunction
 
