@@ -99,7 +99,27 @@ name = 'tools'
 #=============================================================================
 
 [[custom_plugins]]
-name = "termhn/i3-vim-nav"
+name = "wellle/tmux-complete.vim"
+merged = 0
+
+[[custom_plugins]]
+name = "markonm/traces.vim"
+merged = 0
+
+[[custom_plugins]]
+name = "wellle/targets.vim"
+merged = 0
+
+[[custom_plugins]]
+name = "vim-scripts/star-search"
+merged = 0
+
+[[custom_plugins]]
+name = "vim-scripts/YankRing.vim"
+merged = 0
+
+[[custom_plugins]]
+name = "t9md/vim-quickhl"
 merged = 0
 
 [[custom_plugins]]
