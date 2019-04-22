@@ -99,6 +99,10 @@ name = 'tools'
 #=============================================================================
 
 [[custom_plugins]]
+name = "termhn/i3-vim-nav"
+merged = 0
+
+[[custom_plugins]]
 name = "unblevable/quick-scope"
 merged = 0
 
