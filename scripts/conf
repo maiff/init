@@ -1,0 +1,24 @@
+#!/bin/sh
+# /usr/bin/i3exit
+
+# with openrc use loginctl
+case "$1" in
+    zsh)
+        vim /home/$USER/.zshrc
+        ;;
+    i3)
+        vim /home/$USER/.config/i3/config
+        ;;
+    i3wm)
+        vim /home/$USER/.config/i3/config
+        ;;
+    tmux)
+        vim /home/$USER/.tmux.conf.local
+        ;;
+    *)
+        echo "== ! conf: missing or invalid argument ! =="
+        exit 2
+esac
+
+exit 0
+
