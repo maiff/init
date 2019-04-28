@@ -1,19 +1,32 @@
 #!/bin/sh
 # /usr/bin/i3exit
 
+EDITOR=`which $EDITOR`
 # with openrc use loginctl
 case "$1" in
     zsh)
-        vim /home/$USER/.zshrc
+        $EDITOR /home/$USER/.zshrc
         ;;
     i3)
-        vim /home/$USER/.config/i3/config
+        $EDITOR /home/$USER/.config/i3/config
         ;;
     i3wm)
-        vim /home/$USER/.config/i3/config
+        $EDITOR /home/$USER/.config/i3/config
         ;;
     tmux)
-        vim /home/$USER/.tmux.conf.local
+        $EDITOR /home/$USER/.tmux.conf.local
+        ;;
+    conf)
+        $EDITOR /home/$USER/scripts/conf
+        ;;
+    haproxy)
+        $EDITOR /home/$USER/.haproxy.cfg
+        ;;
+    ss)
+        $EDITOR /home/$USER/.ss.json
+        ;;
+    proxychains)
+        sudo $EDITOR /etc/proxychains.conf
         ;;
     *)
         echo "== ! conf: missing or invalid argument ! =="

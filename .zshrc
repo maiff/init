@@ -118,6 +118,7 @@ alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
 alias cl='clear'
 alias vimn='vim -u NONE'
 alias vims='vim -S .obsession.vim'
+alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 
 
 # export ALL_PROXY=socks5://127.0.0.1:1080
