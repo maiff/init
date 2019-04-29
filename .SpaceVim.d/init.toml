@@ -99,6 +99,14 @@ name = 'tools'
 #=============================================================================
 
 [[custom_plugins]]
+name = "google/vim-searchindex"
+merged = 0
+
+[[custom_plugins]]
+name = "junegunn/vim-peekaboo"
+merged = 0
+
+[[custom_plugins]]
 name = "wellle/tmux-complete.vim"
 merged = 0
 

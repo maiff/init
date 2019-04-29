@@ -1,3 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/mail-ecnu/.jupyter'
+let g:netrw_dirhist_2='/home/qmxue/MutualLearning/layers'
+let g:netrw_dirhist_3='/home/qmxue/MutualLearning'
+let g:netrw_dirhist_4='/home/qmxue/fudan_mtl_reviews'
+let g:netrw_dirhist_5='/home/qmxue'
+let g:netrw_dirhist_6='/home/qmxue/fudan_mtl_reviews'
+let g:netrw_dirhist_7='/home/qmxue/fudan_mtl_reviews/src'
+let g:netrw_dirhist_8='/home/qmxue/MutualLearning'
