@@ -27,8 +27,14 @@ function! myspacevim#before() abort
   "       \ '<plug>(vimtex-info)',
   "       \ 'vimtex-info', 0)
   " call SpaceVim#custom#SPCGroupName(['G'], '+TestGroup')
+  call SpaceVim#custom#SPCGroupName(['d'], 'diff')
+  call SpaceVim#custom#SPC('nore', ['d', 'n'], 'normal ]c', 'next diff', 1)
+  call SpaceVim#custom#SPC('nore', ['d', 'p'], 'normal [c', 'previous diff', 1)
+  call SpaceVim#custom#SPC('nore', ['d', 'o'], 'normal do', ' get changes from other window into the current window', 1)
+  call SpaceVim#custom#SPC('nore', ['d', 'O'], 'normal dp', 'put the changes from current window into the other window', 1)
+  call SpaceVim#custom#SPC('nore', ['d', 'q'], 'diffoff', 'quit diff', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'u'], 'MundoToggle', 'undo tree', 1)
-  call SpaceVim#custom#SPC('nore', ['b', 'C'], 'cd %:p:h', 'set path to the directory of current buffer', 1)
+  call SpaceVim#custom#SPC('nore', ['p', '.'], 'cd %:p:h', 'set path to the directory of current buffer', 1)
   call SpaceVim#custom#SPC('nore', ['q', 'w'], 'wqa', 'write and quit all files', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'w'], 'w', 'write file', 1)
   call SpaceVim#custom#SPC('nore', ['f', 'v', 'm'], 'tabnew ~/.SpaceVim.d/autoload/myspacevim.vim', 'open myspacevim.vim', 1)
@@ -55,6 +61,7 @@ function! myspacevim#before() abort
   " quickhl
   call SpaceVim#custom#SPC('nmap', ['s', 'm'], '<Plug>(quickhl-manual-this-whole-word)', 'highlight current word', 0)
   call SpaceVim#custom#SPC('vmap', ['s', 'm'], '<Plug>(quickhl-manual-this)', 'highlight current word', 0)
+  call SpaceVim#custom#SPC('nmap', ['s', 'M'], '<Plug>(quickhl-manual-reset)', 'clear all manually added highlight', 0)
 
   " switch python interpreter
   let g:python_location = system('which python')

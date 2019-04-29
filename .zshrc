@@ -14,7 +14,7 @@ ZSH_THEME="random"
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-ZSH_THEME_RANDOM_CANDIDATES=("agnoster" "amuse" "bira" "candy" "flazz" "ys")
+ZSH_THEME_RANDOM_CANDIDATES=("amuse" "avit" "bira" "bureau" "candy" "dogenpunk" "junkfood" "mortalscumbag" "rkj-repos" "smt" "sporty_256" "steeef" "suvash" "ys")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -101,7 +101,6 @@ alias ssh2='ssh qmxue@59.78.194.138'
 alias ssh3='ssh qmxue@58.198.176.85'
 alias sssh2='ssh server@59.78.194.138'
 alias sshw='ssh qmxue@59.78.194.35'
-alias vim='nvim'
 alias em='emacs'
 alias gpus='watch --color gpustat --color'
 alias gpu0='CUDA_VISIBLE_DEVICES=0'
@@ -114,8 +113,9 @@ alias rl='source ~/.zshrc'
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
 alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
 alias cl='clear'
-alias vimn='vim -u NONE'
-alias vims='vim -S .obsession.vim'
+alias vimn='nvim -u NONE'
+alias vim='nvim'
+alias vims='nvim -S .obsession.vim'
 alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 
 
