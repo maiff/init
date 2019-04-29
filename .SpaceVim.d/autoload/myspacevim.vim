@@ -264,4 +264,3 @@ function! myspacevim#after() abort
 
   Obsession .obsession.vim
 endfunction
-

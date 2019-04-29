@@ -80,7 +80,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -118,6 +118,7 @@ alias cl='clear'
 alias vimn='nvim -u NONE'
 alias vim='nvim'
 alias vims='nvim -S .obsession.vim'
+alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 
 
 # export ALL_PROXY=socks5://127.0.0.1:1080
