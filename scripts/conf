@@ -28,6 +28,9 @@ case "$1" in
     proxychains)
         sudo $EDITOR /etc/proxychains.conf
         ;;
+    dunst)
+        $EDITOR /home/$USER/.config/dunst/dunstrc
+        ;;
     *)
         echo "== ! conf: missing or invalid argument ! =="
         exit 2

@@ -10,3 +10,4 @@ export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export TF_CPP_MIN_LOG_LEVEL=3
 
 export TZ="Asia/Shanghai"
+export GIO_EXTRA_MODULES=/usr/lib/x86_64-linux-gnu/gio/modules/

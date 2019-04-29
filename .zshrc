@@ -95,7 +95,6 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias sshg='ssh qmxue@58.198.177.46'
 alias ssh2='ssh qmxue@59.78.194.138'
@@ -113,7 +112,6 @@ alias f='fuck'
 alias sa='source activate'
 alias rl='source ~/.zshrc'
 alias net='curl --silent -d "action=login&username=51184501170&password=xqm8992249,,,&ac_id=1&user_ip=&nas_ip=&user_mac=&save_me=0&ajax=1" https://login.ecnu.edu.cn/include/auth_action.php'
-alias xdg='xdg-open'
 alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
 alias cl='clear'
 alias vimn='vim -u NONE'
