@@ -108,14 +108,15 @@ function! myspacevim#after() abort
   set noswapfile
   set showcmd
   set foldlevel=2
-  " if has("termguicolors")
-  "   " fix bug for vim
-  "   set t_8f=[38;2;%lu;%lu;%lum
-  "   set t_8b=[48;2;%lu;%lu;%lum
-  "
-  "   " enable true color
-  "   set termguicolors
-  " endif
+  let truecolor_terms = ['xterm-termite', 'xterm-256color', 'termite']
+  if has("termguicolors") && index(truecolor_terms, $TERM) >= 0
+    " fix bug for vim
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+
+    " enable true color
+    set termguicolors
+  endif
   if has('nvim')
     set pumblend=20
   endif
