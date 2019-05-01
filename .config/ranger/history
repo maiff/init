@@ -1,0 +1,28 @@
+e ~
+e a.txt
+sp
+split
+shell 
+rename a.cpp
+touch 1
+!xdg-open
+!touch a.
+open_with unzip
+search mode
+delete
+
+h
+help
+search pic
+find 
+find ho
+filter kk
+open_with h
+find h
+find n
+find nut
+open_with zip
+open_with 
+filter kj
+open_with ang
+quit

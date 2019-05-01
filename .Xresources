@@ -1,0 +1,91 @@
+! *background:                      #272827
+! *foreground:                      #657b83
+! *cursorColor:                     #16A085
+!
+! *color0:                          #232423
+! *color8:                          #282928
+! *color1:                          #BA2922
+! *color9:                          #CC372C
+! *color2:                          #7E807E
+! *color10:                         #8D8F8D
+! *color3:                          #4C4F4D
+! *color11:                         #4E524F
+! *color4:                          #16A085
+! *color12:                         #13BF9D
+! *color5:                          #43746A
+! *color13:                         #487D72
+! *color6:                          #00CCCC
+! *color14:                         #00D1D1
+! *color7:                          #E0E0E0
+! *color15:                         #E8E8E8
+!
+URxvt.preeditType:Root
+!!调整此处设置输入法
+URxvt.inputMethod:fcitx
+!!颜色设置
+URxvt.depth:32
+!!中括号内数表示透明度
+URxvt.inheritPixmap:true
+!/* Couleurs Tango */
+URxvt.foreground: #C8C8C8
+URxvt.background: #323232
+URxvt.color0:     #2E3436
+URxvt.color1:     #CC0000
+URxvt.color2:     #4E9A06
+URxvt.color3:     #C4A000
+URxvt.color4:     #3465A4
+URxvt.color5:     #75507B
+URxvt.color6:     #06989A
+URxvt.color7:     #D3D7CF
+URxvt.color8:     #555753
+URxvt.color9:     #EF2929
+URxvt.color10:    #8AE234
+URxvt.color11:    #FCE94F
+URxvt.color12:    #729FCF
+URxvt.color13:    #AD7FA8
+URxvt.color14:    #34E2E2
+URxvt.color15:    #EEEEEC
+!!URL操作
+URxvt.urlLauncher:google-chrome
+URxvt.matcher.button:1
+Urxvt.perl-ext-common:matcher
+!!滚动条设置
+URxvt.scrollBar:False
+URxvt.scrollBar_floating:False
+URxvt.scrollstyle:plain
+!!滚屏设置
+URxvt.mouseWheelScrollPage:True
+URxvt.scrollTtyOutput:False
+URxvt.scrollWithBuffer:True
+URxvt.scrollTtyKeypress:True
+!!光标闪烁
+URxvt.cursorBlink:True
+URxvt.saveLines:5000
+!!边框
+URxvt.borderLess:False
+!!字体设置
+Xft.dpi:96
+URxvt.font:xft:SauceCodePro Nerd Font Mono:antialias=True:pixelsize=18,xft:Microsoft YaHei:Font Awesome 5 Free Solid:pixelsize=18:
+URxvt.boldfont:xft:SauceCodePro Nerd Font Mono:antialias=True:pixelsize=18,xft:Microsoft YaHei:pixelsize=18
+URxvt*internalBorder: 5
+URxvt*geometry: 70x19
+
+URxvt.transparent: true
+URxvt.shading:     10
+URxvt.fading:      40
+
+! rofi.color-enabled: true
+! rofi.color-window: #272827, #13bf9d, #13bf9d
+! rofi.color-normal: #272827, #657b83, #272827, #272827, #13bf9d
+! rofi.color-active: #272827, #657b83, #272827, #272827, #13bf9d
+! rofi.color-urgent: #272827, #657b83, #272827, #272827, #13bf9d
+
+rofi.separator-style: solid
+rofi.sidebar-mode: false
+rofi.lines: 5
+rofi.font: Source Code Pro Semibold 10.5
+rofi.bw: 1
+rofi.columns: 2
+rofi.padding: 5
+rofi.fixed-num-lines: true
+rofi.hide-scrollbar: true
