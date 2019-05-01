@@ -61,6 +61,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'm'], 'call jedi#rename()', 'refactor current variable', 1)
+  call SpaceVim#custom#SPC('nore', ['t', 'T'], 'call Toggle_transparent()', 'toggle transparent background', 1)
   call SpaceVim#custom#SPC('nmap', ['b', 'n'], '<Plug>(wintabs_next)', 'next buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'p'], '<Plug>(wintabs_previous)', 'previous buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'd'], '<Plug>(wintabs_close)', 'close buffer', 0)
@@ -250,6 +251,17 @@ function! myspacevim#after() abort
       RltvNmbr!
     endif
   endfunc
+
+  let g:is_transparent = 0
+  function! Toggle_transparent()
+      if g:is_transparent == 0
+          hi Normal guibg=NONE ctermbg=NONE
+          let g:is_transparent = 1
+      else
+          set background=dark
+          let g:is_transparent = 0
+      endif
+  endfunction
 
   " ale
   let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
