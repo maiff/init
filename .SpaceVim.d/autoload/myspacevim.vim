@@ -294,6 +294,17 @@ function! myspacevim#after() abort
 
   " wintabs
   let g:wintabs_ui_readonly = ' RO'
-  
+  let g:wintabs_ui_buffer_name_format = " %o# %t "
+  map <leader>1 :WintabsGo 1<CR>
+  map <leader>2 :WintabsGo 2<CR>
+  map <leader>3 :WintabsGo 3<CR>
+  map <leader>4 :WintabsGo 4<CR>
+  map <leader>5 :WintabsGo 5<CR>
+  map <leader>6 :WintabsGo 6<CR>
+  map <leader>7 :WintabsGo 7<CR>
+  map <leader>8 :WintabsGo 8<CR>
+  map <leader>9 :WintabsGo 9<CR>
+  map <leader>0 :WintabsGo 10<CR>
+
   Obsession .obsession.vim
 endfunction
