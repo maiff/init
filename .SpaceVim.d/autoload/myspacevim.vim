@@ -61,6 +61,18 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'm'], 'call jedi#rename()', 'refactor current variable', 1)
+  call SpaceVim#custom#SPC('nmap', ['b', 'n'], '<Plug>(wintabs_next)', 'next buffer', 0)
+  call SpaceVim#custom#SPC('nmap', ['b', 'p'], '<Plug>(wintabs_previous)', 'previous buffer', 0)
+  call SpaceVim#custom#SPC('nmap', ['b', 'd'], '<Plug>(wintabs_close)', 'close buffer', 0)
+  call SpaceVim#custom#SPC('nmap', ['b', 'u'], '<Plug>(wintabs_undo)', 'undo last buffer close', 0)
+  call SpaceVim#custom#SPC('nmap', ['b', '<C-d>'], '<Plug>(wintabs_only)', 'kill other buffers', 0)
+  call SpaceVim#custom#SPC('nmap', ['b', 'a'], 'WintabsAllBuffers', 'show all open buffers in current window', 1)
+  call SpaceVim#custom#SPC('vmap', ['b', 'n'], '<Plug>(wintabs_next)', 'next buffer', 0)
+  call SpaceVim#custom#SPC('vmap', ['b', 'p'], '<Plug>(wintabs_previous)', 'previous buffer', 0)
+  call SpaceVim#custom#SPC('vmap', ['b', 'd'], '<Plug>(wintabs_close)', 'close buffer', 0)
+  call SpaceVim#custom#SPC('vmap', ['b', 'u'], '<Plug>(wintabs_undo)', 'undo last buffer close', 0)
+  call SpaceVim#custom#SPC('vmap', ['b', '<C-d>'], '<Plug>(wintabs_only)', 'kill other buffers', 0)
+  call SpaceVim#custom#SPC('vmap', ['b', 'a'], 'WintabsAllBuffers', 'show all open buffers in current window', 1)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
   " so I have to turn to the functions of ale
   if g:spacevim_enable_ale
@@ -270,6 +282,9 @@ function! myspacevim#after() abort
   " nnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
   " vnoremap <silent> ] :<c-u>LeaderGuideVisual ']'<CR>
 
+  " wintabs
+  let g:wintabs_ui_readonly = ' RO'
+  
   Obsession .obsession.vim
   noremap <c-a> :call Fsk()<CR>
 
