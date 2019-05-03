@@ -1,9 +1,14 @@
-#!/bin/sh
+#!/bin/zsh
 # /usr/bin/i3exit
 
-EDITOR=`which $EDITOR`
+if [[ $EDITOR == '' ]] {
+  echo 'no EDITOR is specified, use vim'
+  EDITOR=vim
+}
+echo $EDITOR
+
 # with openrc use loginctl
-case "$1" in
+case $1 in
     zsh)
         $EDITOR /home/$USER/.zshrc
         ;;
@@ -31,10 +36,19 @@ case "$1" in
     dunst)
         $EDITOR /home/$USER/.config/dunst/dunstrc
         ;;
+    ranger)
+        $EDITOR /home/$USER/.config/ranger/rc.conf
+        ;;
+    termite)
+        $EDITOR /home/$USER/.config/termite/config
+        ;;
     *)
+      {
+        $EDITOR /home/$USER/.config/$1/*conf*
+      } always {
         echo "== ! conf: missing or invalid argument ! =="
         exit 2
+      }
 esac
 
 exit 0
-
