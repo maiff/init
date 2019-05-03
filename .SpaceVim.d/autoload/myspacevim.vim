@@ -61,6 +61,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'm'], 'call jedi#rename()', 'refactor current variable', 1)
+  call SpaceVim#custom#SPC('nore', ['t', 'g'], 'call LeftHand()', 'toggle left hand mode', 1)
   call SpaceVim#custom#SPC('nmap', ['b', 'n'], '<Plug>(wintabs_next)', 'next buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'p'], '<Plug>(wintabs_previous)', 'previous buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'd'], '<Plug>(wintabs_close)', 'close buffer', 0)
