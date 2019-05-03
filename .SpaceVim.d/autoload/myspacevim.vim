@@ -54,7 +54,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['t', 'p'], 'call CopyMode()', 'toggle copy mode', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'r'], 'call RelativeNumber()', 'toggle relative number', 1)
   call SpaceVim#custom#SPC('nore', ['r', 'y'], 'YRShow', 'Show Yank Ring', 1)
-  call SpaceVim#custom#SPC('nore', ['r', 'l'], 'call myspacevim#after()', 'Reload myspacevim.vim', 1)
+  call SpaceVim#custom#SPC('nore', ['r', 'l'], 'source ~/.SpaceVim.d/autoload/myspacevim.vim | call myspacevim#after()', 'Reload myspacevim.vim', 1)
   call SpaceVim#custom#SPC('nore', ['B', 'l'], 'Lines', 'fzf in all buffers', 1)
   call SpaceVim#custom#SPC('nore', ['b', 'l'], 'BLines', 'fzf in current buffer', 1)
   call SpaceVim#custom#SPC('nore', ['l', 't'], 'Tagbar', 'tag bar', 1)
@@ -62,6 +62,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'm'], 'call jedi#rename()', 'refactor current variable', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'T'], 'call Toggle_transparent()', 'toggle transparent background', 1)
+  call SpaceVim#custom#SPC('nore', ['t', 'g'], 'call LeftHand()', 'toggle left hand mode', 1)
   call SpaceVim#custom#SPC('nmap', ['b', 'n'], '<Plug>(wintabs_next)', 'next buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'p'], '<Plug>(wintabs_previous)', 'previous buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'd'], '<Plug>(wintabs_close)', 'close buffer', 0)
@@ -125,6 +126,7 @@ function! myspacevim#before() abort
   let g:cmdline_app['python']  = 'ipython'
   let g:cmdline_app['python3'] = 'ipython'
   let g:cmdline_app['sh']      = 'zsh'
+
 endfunction
 
 function! myspacevim#after() abort
@@ -135,13 +137,14 @@ function! myspacevim#after() abort
   set showcmd
   set foldlevel=2
 
-  if has('nvim')
+  if has('nvim-0.4.0')
     set pumblend=20
   endif
 
   nnoremap Y y$
   nnoremap S i<enter><esc>
   nnoremap <bs> "_
+  vnoremap <bs> "_
   nnoremap zl 10zl
   nnoremap zh 10zh
   nnoremap Q q
@@ -157,10 +160,10 @@ function! myspacevim#after() abort
   tnoremap <C-h> <C-\><C-N>:<C-U>wincmd h<CR>
   tnoremap <C-l> <C-\><C-N>:<C-U>wincmd l<CR>
 
-  unmap <c-x>
-  unmap <tab>
-  unmap <
-  unmap >
+  silent! unmap <c-x>
+  silent! unmap <tab>
+  silent! unmap <
+  silent! unmap >
 
   " Toggle rainbow parentheses
   RainbowParentheses
@@ -307,4 +310,48 @@ function! myspacevim#after() abort
   map <leader>0 :WintabsGo 10<CR>
 
   Obsession .obsession.vim
+  noremap <c-a> :call Fsk()<CR>
+
+  function! LeftHand() abort
+    let s:state = SpaceVim#api#import('transient_state') 
+    call s:state.set_title('Left Hand Mode')
+    call s:state.defind_keys(
+          \ {
+          \ 'layout' : 'vertical split',
+          \ 'left' : [
+          \ {
+          \ 'key' : 'd',
+          \ 'desc' : 'Scroll half page down',
+          \ 'func' : '',
+          \ 'cmd' : 'normal Lzz',
+          \ 'exit' : 0,
+          \ },
+          \ {
+          \ 'key' : "e",
+          \ 'desc' : 'Scroll half page up',
+          \ 'func' : '',
+          \ 'cmd' : 'normal Hzz',
+          \ 'exit' : 0,
+          \ },
+          \ {
+          \ 'key' : 'w',
+          \ 'desc' : 'Scroll one line up',
+          \ 'func' : '',
+          \ 'cmd' : 'normal kzz',
+          \ 'exit' : 0,
+          \ },
+          \ {
+          \ 'key' : 's',
+          \ 'desc' : 'Scroll one line up',
+          \ 'func' : '',
+          \ 'cmd' : 'normal jzz',
+          \ 'exit' : 0,
+          \ }
+          \ ],
+          \ 'right' : [],
+          \ }
+          \ )
+    call s:state.open()
+  endfunction
+
 endfunction

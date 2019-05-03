@@ -117,6 +117,7 @@ alias vimn='nvim -u NONE'
 alias vim='nvim'
 alias vims='nvim -S .obsession.vim'
 alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
+alias xdg="xdg-open"
 
 
 # export ALL_PROXY=socks5://127.0.0.1:1080
