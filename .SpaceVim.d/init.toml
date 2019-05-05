@@ -99,6 +99,10 @@ name = 'tools'
 #=============================================================================
 
 [[custom_plugins]]
+name = "zefei/vim-wintabs-powerline"
+merged = 0
+
+[[custom_plugins]]
 name = "zefei/vim-wintabs"
 merged = 0
 

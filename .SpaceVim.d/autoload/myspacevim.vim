@@ -61,6 +61,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', ['l', 'b'], 'call F6()', 'hard breakpoint', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'c'], 'call CancelDebugForAllBuffers()', 'write off all hard breakpoints', 1)
   call SpaceVim#custom#SPC('nore', ['l', 'm'], 'call jedi#rename()', 'refactor current variable', 1)
+  call SpaceVim#custom#SPC('nore', ['t', 'T'], 'call Toggle_transparent()', 'toggle transparent background', 1)
   call SpaceVim#custom#SPC('nore', ['t', 'g'], 'call LeftHand()', 'toggle left hand mode', 1)
   call SpaceVim#custom#SPC('nmap', ['b', 'n'], '<Plug>(wintabs_next)', 'next buffer', 0)
   call SpaceVim#custom#SPC('nmap', ['b', 'p'], '<Plug>(wintabs_previous)', 'previous buffer', 0)
@@ -254,6 +255,17 @@ function! myspacevim#after() abort
     endif
   endfunc
 
+  let g:is_transparent = 0
+  function! Toggle_transparent()
+      if g:is_transparent == 0
+          hi Normal guibg=NONE ctermbg=NONE
+          let g:is_transparent = 1
+      else
+          set background=dark
+          let g:is_transparent = 0
+      endif
+  endfunction
+
   " ale
   let g:ale_linters = {'python': ['flake8', 'autopep8', 'pylint']}
   let g:ale_python_flake8_options = '--ignore=E501'
@@ -285,7 +297,18 @@ function! myspacevim#after() abort
 
   " wintabs
   let g:wintabs_ui_readonly = ' RO'
-  
+  let g:wintabs_ui_buffer_name_format = " %o# %t "
+  map <leader>1 :WintabsGo 1<CR>
+  map <leader>2 :WintabsGo 2<CR>
+  map <leader>3 :WintabsGo 3<CR>
+  map <leader>4 :WintabsGo 4<CR>
+  map <leader>5 :WintabsGo 5<CR>
+  map <leader>6 :WintabsGo 6<CR>
+  map <leader>7 :WintabsGo 7<CR>
+  map <leader>8 :WintabsGo 8<CR>
+  map <leader>9 :WintabsGo 9<CR>
+  map <leader>0 :WintabsGo 10<CR>
+
   Obsession .obsession.vim
   noremap <c-a> :call Fsk()<CR>
 
