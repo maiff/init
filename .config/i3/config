@@ -107,9 +107,9 @@ bindsym $mod+BackSpace workspace back_and_forth
 # switch to workspace
 # bindsym $mod+1 workspace $ws1
 # bindsym $mod+2 workspace $ws2
-bindsym $mod+q workspace Quest
-bindsym $mod+e workspace Edit
-bindsym $mod+w workspace Wechat
+bindsym $mod+q workspace Quest
+bindsym $mod+e workspace Edit
+bindsym $mod+w workspace Wechat
 
 # Move to workspace with focused container
 bindsym $mod+Shift+e move container to workspace prev; workspace prev
@@ -119,9 +119,9 @@ bindsym $mod+m mode "$move_window"
 set $move_window Move Window to: (Q)uest, (E)dit, (W)echat
 mode "$move_window" {
     # Move focused container to workspace
-    bindsym q move container to workspace Quest; workspace Quest
-    bindsym e move container to workspace Edit; workspace Edit
-    bindsym w move container to workspace Wechat; workspace Wechat
+    bindsym q move container to workspace Quest; workspace Quest
+    bindsym e move container to workspace Edit; workspace Edit
+    bindsym w move container to workspace Wechat; workspace Wechat
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -130,11 +130,11 @@ mode "$move_window" {
 }
 
 # Open specific applications in floating mode
-for_window [class="Gpick"] floating enable
+for_window [class="Gpick*"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [class=".*"] title_format "<span foreground='#ffffff'>&#xf0c9;</span> <b> %class</b> - %title"
 for_window [class="Google-chrome"] title_format "<span foreground='#367dd0'>&#xf268;</span> <b> %class</b> - %title"
-for_window [class="Termite"] title_format "<span foreground='#00ff00'>&#xf120;</span> <b> %class</b> - %title"
+for_window [class="URxvt|Termite"] title_format "<span foreground='#00ff00'>&#xf120;</span> <b> %class</b> - %title"
 for_window [class="netease-cloud-music"] title_format "<span foreground='#C72E2E'>&#xf001;</span> <b> %class</b> - %title"
 for_window [class="electronic-wechat"] title_format "<span foreground='#B2E281'>&#xf1d7;</span> <b> %class</b> - %title"
 for_window [class="Artha"] title_format "<span foreground='#835c3b'>&#xf02d;</span> <b> %class</b> - %title"
@@ -144,7 +144,8 @@ for_window [class="MuPDF|Zathura|Foxit Reader"] title_format "<span foreground='
 for_window [class="Wps"] title_format "<span foreground='#6090E6'>&#xf1c2;</span> <b> %class</b> - %title"
 for_window [class="Et"] title_format "<span foreground='#387E3F'>&#xf1c3;</span> <b> %class</b> - %title"
 for_window [class="Wpp"] title_format "<span foreground='#ae5831'>&#xf1c4;</span> <b> %class</b> - %title"
-for_window [class="File-roller"] title_format "<span foreground='#367BF0'>&#f1c6;</span> <b> %class</b> - %title"
+for_window [class="File-roller"] title_format "<span foreground='#367BF0'>&#xf1c6;</span> <b> %class</b> - %title"
+for_window [class="Emacs"] title_format "<span foreground='#694E7F'>&#xf2d7;</span> <b> %class</b> - %title"
 
 # color defines for zenburn styled i3
 set $bg     #2c2c2e
@@ -228,7 +229,7 @@ mode "resize" {
         bindsym control+bracketleft mode "default"
 }
 
-bindsym $mod+Shift+p mode "resize"
+bindsym $mod+r mode "resize"
 
 # border
 smart_borders on
@@ -286,7 +287,7 @@ bar {
         position top
         tray_padding 0
         strip_workspace_numbers yes
-        font pango:SauceCodePro Nerd Font Mono, Font Awesome 5 Free Solid, FontAwesome 10
+        font pango:Microsoft YaHei, Font Awesome 5 Free Solid, SauceCodePro Nerd Font Mono 10
         status_command /home/$USER/usr/bin/i3status-rs /home/$USER/.config/i3/i3_status_config
         colors {
             separator #928374
@@ -303,9 +304,10 @@ bar {
 # finds out, if available)
 bar {
         position bottom
+        tray_output none
         hidden_state show
         strip_workspace_numbers yes
-        font pango:SauceCodePro Nerd Font Mono, Font Awesome 5 Free Solid, FontAwesome 10
+        font pango:Microsoft YaHei, Font Awesome 5 Free Solid, SauceCodePro Nerd Font Mono 10
         status_command /home/$USER/usr/bin/i3status-rs /home/$USER/.config/i3/i3_status_config_vert
         colors {
             separator #928374
@@ -323,4 +325,4 @@ bindsym shift+Print exec gnome-screenshot -ac
 bindsym control+Print exec gnome-screenshot -wc
 
 # Autostart applications
-exec_always --no-startup-id /home/$USER/.startup.sh
+exec --no-startup-id /home/$USER/.startup.sh
