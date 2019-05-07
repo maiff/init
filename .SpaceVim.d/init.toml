@@ -99,6 +99,14 @@ name = 'tools'
 #=============================================================================
 
 [[custom_plugins]]
+name = "bkad/CamelCaseMotion"
+merged = 0
+
+[[custom_plugins]]
+name = "haya14busa/incsearch.vim"
+merged = 0
+
+[[custom_plugins]]
 name = "zefei/vim-wintabs-powerline"
 merged = 0
 

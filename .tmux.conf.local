@@ -278,8 +278,9 @@ tmux_conf_copy_to_os_clipboard=false
 # start with mouse mode enabled
 set -g mouse on
 
-# set -g default-terminal screen-256color
+set -g default-terminal "tmux-256color"
 # set-option -ga terminal-overrides ",*256col*:Tc" # 这句是关键
+set -ga terminal-overrides ",termite:Tc"
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual

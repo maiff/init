@@ -1,6 +1,6 @@
 function! myspacevim#before() abort
   " term color
-  let truecolor_terms = ['xterm-termite', 'xterm-256color', 'termite']
+  let truecolor_terms = ['xterm-termite', 'tmux-256color', 'xterm-256color', 'termite']
   if has("termguicolors") && index(truecolor_terms, $TERM) >= 0
     " fix bug for vim
     set t_8f=[38;2;%lu;%lu;%lum
@@ -75,6 +75,7 @@ function! myspacevim#before() abort
   call SpaceVim#custom#SPC('vmap', ['b', 'u'], '<Plug>(wintabs_undo)', 'undo last buffer close', 0)
   call SpaceVim#custom#SPC('vmap', ['b', '<C-d>'], '<Plug>(wintabs_only)', 'kill other buffers', 0)
   call SpaceVim#custom#SPC('vmap', ['b', 'a'], 'WintabsAllBuffers', 'show all open buffers in current window', 1)
+  call SpaceVim#custom#SPC('nore', ['<Space>'], ':', 'ex command', 0)
   " when using ale, the behavior of next/previous error of SpaceVim is wrong
   " so I have to turn to the functions of ale
   if g:spacevim_enable_ale
@@ -308,9 +309,49 @@ function! myspacevim#after() abort
   map <leader>8 :WintabsGo 8<CR>
   map <leader>9 :WintabsGo 9<CR>
   map <leader>0 :WintabsGo 10<CR>
+  
+  " incsearch.vim
+  map g/ <Plug>(incsearch-stay)
+  map g/ <Plug>(incsearch-stay)
+  map z/ <Plug>(incsearch-fuzzyspell-/)
+  map z? <Plug>(incsearch-fuzzyspell-?)
+  map zg/ <Plug>(incsearch-fuzzyspell-stay)
 
   Obsession .obsession.vim
-  noremap <c-a> :call Fsk()<CR>
+
+"   function! IsAlphanum(char) abort
+"     if char2nr('a') <= char2nr(a:char) && char2nr(a:char) <= char2nr('z')
+"       return 1
+"     endif
+"     if char2nr('A') <= char2nr(a:char) && char2nr(a:char) <= char2nr('A')
+"       return 1
+"     endif
+"     if char2nr('0') <= char2nr(a:char) && char2nr(a:char) <= char2nr('9')
+"       return 1
+"     endif
+"     return 0
+"   endfunction
+"
+"   function! DeleteUntilUnderscore(startcol) abort
+"     let isalphanum = IsAlphanum(curline[startcol])
+"     let col = a:startcol - 1
+"     while col != -1 && IsAlphanum(curline[col]) == isalphanum
+"       let col = col - 1
+"     endwhile
+"     let curline = curline[:col].curline[a:startcol:]
+"   endfunction
+"
+"     let curpos = getcurpos()
+"     let lnum = curpos[1]
+"     let col = curpos[2]
+"   :inoremap <silent> <expr> <c-w>
+" \   col('.') == 1 ?
+" \       '<C-w>' :
+" \       col('.') >= col('$') ?
+" \           '<C-o>:normal! Bd$<CR>' :
+" \           '<C-o>:normal! m"Bdg`"<CR>'
+
+  " imap <c-w> <c-o>:call DeleteUntilUnderscore()<CR>
 
   function! LeftHand() abort
     let s:state = SpaceVim#api#import('transient_state') 
