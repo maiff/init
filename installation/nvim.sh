@@ -1,8 +1,7 @@
 brew install nvim
 
 # spacevim installation
-curl -sLf https://spacevim.org/install.sh | bash -s -- -h
-
+curl -sLf https://spacevim.org/install.sh | bash -s
 # nvim configuration
 pip install --upgrade neovim
 # mkdir ~/.config/nvim
