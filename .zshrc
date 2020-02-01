@@ -137,10 +137,6 @@ bindkey '^N' history-search-forward
 # zle -N zle-line-init
 # #zle -N zle-keymap-select
 
-# type less
-aida='58.198.177.46'
-aida1702='59.78.194.138'
-titan='58.198.176.85'
 
 eval $(thefuck --alias)
 
