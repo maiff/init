@@ -8,3 +8,13 @@ init.sh
 ./non-root-initialize.sh
 ```
 
+不过这个脚本是我自己使用总归有很多问题和很多个性化配置。推荐使用方法还是去installation文件夹里的几个shell脚本复制自己用的上的命令。
+
+nvim.sh
+安装nvim
+
+tmux.sh
+安装oh my tmux 和相关配置
+
+zsh.sh
+安装zsh相关插件
