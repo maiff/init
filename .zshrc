@@ -114,7 +114,6 @@ alias net='curl --silent -d "action=login&username=51184501170&password=xqm89922
 alias tb='tensorboard --port 8288 --debugger_port 8287 --logdir .'
 alias cl='clear'
 alias vimn='nvim -u NONE'
-alias vim='emacs'
 alias vims='nvim -S .obsession.vim'
 alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 alias xdg="xdg-open"
