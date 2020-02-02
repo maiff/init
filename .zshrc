@@ -149,3 +149,14 @@ bindkey '^U' autosuggest-clear
 bindkey '^T' autosuggest-accept
 
 source ~/.zshrc.local
+
+alias tl = tmux list-sessions
+alias tkss = tmux kill-session -t
+alias ta = tmux attach -t
+alias ts = tmux new-session -s
+
+alias gaa = git add --all
+alias gcmsg = git commit -m
+alias ga = git add
+alias gst = git status
+alias gp = git push
